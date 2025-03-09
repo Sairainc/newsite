@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, useAnimation } from 'framer-motion'
 
 export default function HeroSection() {
   const textRef = useRef<HTMLHeadingElement>(null)
@@ -10,44 +10,80 @@ export default function HeroSection() {
   const visionRef = useRef<HTMLDivElement>(null)
   const [hidden, setHidden] = useState(false)
   const [lastScrollY, setLastScrollY] = useState(0)
+  const rafRef = useRef<number | null>(null)
+  const ticking = useRef(false)
+
+  // スクロールハンドラを最適化
+  const handleScroll = useCallback(() => {
+    if (!ticking.current) {
+      // 次のアニメーションフレームで処理を実行
+      rafRef.current = requestAnimationFrame(() => {
+        if (!textRef.current || !imageRef.current || !visionRef.current) {
+          ticking.current = false;
+          return;
+        }
+        
+        const scrollPosition = window.scrollY
+        const viewportHeight = window.innerHeight
+        
+        // ナビゲーションの表示制御（しきい値を高くして処理頻度を減らす）
+        if (Math.abs(scrollPosition - lastScrollY) > 50) {
+          const shouldHide = scrollPosition > lastScrollY && scrollPosition > 100;
+          setHidden(shouldHide);
+          setLastScrollY(scrollPosition);
+        }
+
+        // スケールと不透明度の計算を効率化
+        const scale = 1 + Math.min(0.5, (scrollPosition / viewportHeight) * 0.5);
+        const opacity = Math.max(0, 1 - (scrollPosition / viewportHeight));
+
+        // スタイル更新を最小限に
+        textRef.current.style.transform = `scale(${scale.toFixed(2)})`;
+        textRef.current.style.opacity = opacity.toFixed(2);
+
+        // 画像セクションの表示制御
+        const imageOpacity = Math.max(0, Math.min(1, (scrollPosition - viewportHeight * 1.0) / (viewportHeight * 0.2)));
+        imageRef.current.style.opacity = imageOpacity.toFixed(2);
+        
+        // より効率的なtransform
+        if (imageOpacity < 0.99) {
+          const translateY = Math.round(50 * (1 - imageOpacity));
+          imageRef.current.style.transform = `translateY(${translateY}px)`;
+        }
+
+        // ビジョンセクションの表示制御
+        const visionOpacity = Math.max(0, Math.min(1, (scrollPosition - viewportHeight * 0.8) / (viewportHeight * 0.2)));
+        visionRef.current.style.opacity = visionOpacity.toFixed(2);
+        
+        if (visionOpacity < 0.99) {
+          const translateY = Math.round(30 * (1 - visionOpacity));
+          visionRef.current.style.transform = `translateY(${translateY}px)`;
+        }
+        
+        ticking.current = false;
+      });
+    }
+    
+    ticking.current = true;
+  }, [lastScrollY]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!textRef.current || !imageRef.current || !visionRef.current) return
-      
-      const scrollPosition = window.scrollY
-      const viewportHeight = window.innerHeight
-      const scale = 1 + (scrollPosition / viewportHeight) * 0.5
-      const opacity = 1 - (scrollPosition / viewportHeight)
-
-      // ナビゲーションの表示制御
-      if (scrollPosition > lastScrollY && scrollPosition > 100) {
-        setHidden(true)
-      } else {
-        setHidden(false)
+    // パッシブオプションを使用してスクロールリスナーを最適化
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
       }
-      setLastScrollY(scrollPosition)
-
-      textRef.current.style.transform = `scale(${scale})`
-      textRef.current.style.opacity = Math.max(opacity, 0).toString()
-
-      // 画像セクションの表示制御
-      const imageOpacity = Math.max(0, Math.min(1, (scrollPosition - viewportHeight * 1.0) / (viewportHeight * 0.2)))
-      imageRef.current.style.opacity = imageOpacity.toString()
-      imageRef.current.style.transform = `translateY(${50 * (1 - imageOpacity)}px)`
-
-      // ビジョンセクションの表示制御
-      const visionOpacity = Math.max(0, Math.min(1, (scrollPosition - viewportHeight * 0.8) / (viewportHeight * 0.2)))
-      visionRef.current.style.opacity = visionOpacity.toString()
-      visionRef.current.style.transform = `translateY(${30 * (1 - visionOpacity)}px)`
     }
+  }, [handleScroll]);
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [lastScrollY])
-
+  // テキスト分割の最適化（事前計算）
   const text1 = "AIのちからで"
   const text2 = "地方を元気にする。"
+  const text1Chars = text1.split('');
+  const text2Chars = text2.split('');
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -116,7 +152,7 @@ export default function HeroSection() {
   }
 
   return (
-    <div className="relative min-h-[250vh] bg-white">
+    <div className="relative min-h-[250vh] bg-white will-change-transform">
       {/* ヘッダー */}
       <header className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300 ${
         hidden ? '-translate-y-full' : 'translate-y-0'
@@ -139,72 +175,44 @@ export default function HeroSection() {
       </header>
 
       {/* 固定位置のテキストコンテナ */}
-      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden pt-20">
+      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden pt-20 will-change-transform">
         <motion.h1 
           ref={textRef}
-          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-gray-900 text-center transition-transform duration-100"
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-gray-900 text-center transition-transform duration-300"
           style={{ transformOrigin: 'center center' }}
           initial="hidden"
           animate="visible"
           variants={containerVariants}
         >
-          <div className="mb-4">
-            {"AIの".split('').map((char, index) => (
-              <motion.span
-                key={index}
-                variants={letterVariants}
-                className="inline-block relative"
-              >
-                {char}
-              </motion.span>
-            ))}
-            {"ちから".split('').map((char, index) => (
-              <motion.span
-                key={index}
-                variants={letterVariants}
-                className="inline-block relative text-blue-600"
-              >
-                {char}
-              </motion.span>
-            ))}
-            {"で".split('').map((char, index) => (
-              <motion.span
-                key={index}
-                variants={letterVariants}
-                className="inline-block relative"
-              >
-                {char}
-              </motion.span>
-            ))}
+          <div className="mb-4 will-change-transform">
+            {text1Chars.map((char, index) => {
+              // テキストのカラーリングをインラインで最適化
+              const isBlue = index >= 2 && index <= 4; // "ちから" の部分
+              return (
+                <motion.span
+                  key={index}
+                  variants={letterVariants}
+                  className={`inline-block relative ${isBlue ? 'text-blue-600' : ''}`}
+                >
+                  {char}
+                </motion.span>
+              );
+            })}
           </div>
-          <div className="relative inline-block">
-            {"地方を".split('').map((char, index) => (
-              <motion.span
-                key={index}
-                variants={letterVariants}
-                className="inline-block relative"
-              >
-                {char}
-              </motion.span>
-            ))}
-            {"元気".split('').map((char, index) => (
-              <motion.span
-                key={index}
-                variants={letterVariants}
-                className="inline-block relative text-blue-600"
-              >
-                {char}
-              </motion.span>
-            ))}
-            {"にする。".split('').map((char, index) => (
-              <motion.span
-                key={index}
-                variants={letterVariants}
-                className="inline-block relative"
-              >
-                {char}
-              </motion.span>
-            ))}
+          <div className="relative inline-block will-change-transform">
+            {text2Chars.map((char, index) => {
+              // テキストのカラーリングをインラインで最適化
+              const isBlue = index >= 3 && index <= 4; // "元気" の部分
+              return (
+                <motion.span
+                  key={index}
+                  variants={letterVariants}
+                  className={`inline-block relative ${isBlue ? 'text-blue-600' : ''}`}
+                >
+                  {char}
+                </motion.span>
+              );
+            })}
           </div>
         </motion.h1>
       </div>
@@ -212,7 +220,7 @@ export default function HeroSection() {
       {/* ビジョンイメージ */}
       <div 
         ref={imageRef}
-        className="sticky top-0 h-screen flex items-center justify-center overflow-hidden"
+        className="sticky top-0 h-screen flex items-center justify-center overflow-hidden will-change-transform"
         style={{ opacity: 0, transform: 'translateY(50px)' }}
       >
         <motion.div
@@ -225,6 +233,8 @@ export default function HeroSection() {
             src="/images/白川郷 コスモス 無料写真.jpg"
             alt="白川郷のコスモス"
             className="object-cover w-full h-full"
+            loading="eager"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white" />
           
@@ -249,7 +259,7 @@ export default function HeroSection() {
       {/* ビジョン */}
       <div 
         ref={visionRef}
-        className="sticky top-0 h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-white/90 backdrop-blur-sm transition-all duration-700"
+        className="sticky top-0 h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-white/90 backdrop-blur-sm transition-all duration-700 will-change-transform"
         style={{ opacity: 0, transform: 'translateY(50px)' }}
       >
         <div className="max-w-5xl w-full mx-auto">
