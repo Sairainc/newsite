@@ -10,8 +10,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "会社名 - AIで地方創生を実現する",
+  title: "株式会社Saira - AIで地方創生を実現する",
   description: "最先端のテクノロジーで地域の課題を解決し、持続可能な未来を創造します",
+  icons: {
+    icon: '/images/saira-logo.png',
+    apple: '/images/saira-logo.png',
+  },
 };
 
 export default function RootLayout({
