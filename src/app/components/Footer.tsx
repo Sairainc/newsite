@@ -69,9 +69,19 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t border-gray-200">
-          <p className="text-base text-gray-600 text-center">
-            © {new Date().getFullYear()} Company Name. All rights reserved.
-          </p>
+          <div className="flex flex-col sm:flex-row justify-between items-center">
+            <p className="text-base text-gray-600 mb-4 sm:mb-0">
+              © {new Date().getFullYear()} Company Name. All rights reserved.
+            </p>
+            <div className="flex space-x-6">
+              <Link href="/privacy-policy" className="text-sm text-gray-600 hover:text-gray-900">
+                プライバシーポリシー
+              </Link>
+              <Link href="/terms-of-service" className="text-sm text-gray-600 hover:text-gray-900">
+                利用規約
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
