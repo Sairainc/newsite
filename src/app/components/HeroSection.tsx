@@ -187,7 +187,7 @@ export default function HeroSection() {
           <div className="mb-4 will-change-transform">
             {text1Chars.map((char, index) => {
               // テキストのカラーリングをインラインで最適化
-              const isBlue = index >= 2 && index <= 4; // "ちから" の部分
+              const isBlue = char === "ち" || char === "か" || char === "ら"; // "ちから" の部分
               return (
                 <motion.span
                   key={index}
@@ -202,7 +202,7 @@ export default function HeroSection() {
           <div className="relative inline-block will-change-transform">
             {text2Chars.map((char, index) => {
               // テキストのカラーリングをインラインで最適化
-              const isBlue = index >= 3 && index <= 4; // "元気" の部分
+              const isBlue = char === "元" || char === "気"; // "げんき" の部分を "元気" に変更
               return (
                 <motion.span
                   key={index}

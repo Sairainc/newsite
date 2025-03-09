@@ -13,11 +13,9 @@ export const metadata: Metadata = {
   title: "株式会社Saira - AIで地方創生を実現する",
   description: "最先端のテクノロジーで地域の課題を解決し、持続可能な未来を創造します",
   icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/images/saira-logo.png', type: 'image/png' }
-    ],
-    apple: { url: '/apple-icon.png', type: 'image/png' }
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/apple-icon.png',
   },
 };
 
