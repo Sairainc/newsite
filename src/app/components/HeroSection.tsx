@@ -32,7 +32,7 @@ export default function HeroSection() {
       textRef.current.style.opacity = Math.max(opacity, 0).toString()
 
       // 画像セクションの表示制御
-      const imageOpacity = Math.max(0, Math.min(1, (scrollPosition - viewportHeight * 0.5) / (viewportHeight * 0.2)))
+      const imageOpacity = Math.max(0, Math.min(1, (scrollPosition - viewportHeight * 1.0) / (viewportHeight * 0.2)))
       imageRef.current.style.opacity = imageOpacity.toString()
       imageRef.current.style.transform = `translateY(${50 * (1 - imageOpacity)}px)`
 
@@ -149,7 +149,25 @@ export default function HeroSection() {
           variants={containerVariants}
         >
           <div className="mb-4">
-            {text1.split('').map((char, index) => (
+            {"AIの".split('').map((char, index) => (
+              <motion.span
+                key={index}
+                variants={letterVariants}
+                className="inline-block relative"
+              >
+                {char}
+              </motion.span>
+            ))}
+            {"ちから".split('').map((char, index) => (
+              <motion.span
+                key={index}
+                variants={letterVariants}
+                className="inline-block relative text-blue-600"
+              >
+                {char}
+              </motion.span>
+            ))}
+            {"で".split('').map((char, index) => (
               <motion.span
                 key={index}
                 variants={letterVariants}
@@ -160,7 +178,25 @@ export default function HeroSection() {
             ))}
           </div>
           <div className="relative inline-block">
-            {text2.split('').map((char, index) => (
+            {"地方を".split('').map((char, index) => (
+              <motion.span
+                key={index}
+                variants={letterVariants}
+                className="inline-block relative"
+              >
+                {char}
+              </motion.span>
+            ))}
+            {"元気".split('').map((char, index) => (
+              <motion.span
+                key={index}
+                variants={letterVariants}
+                className="inline-block relative text-blue-600"
+              >
+                {char}
+              </motion.span>
+            ))}
+            {"にする。".split('').map((char, index) => (
               <motion.span
                 key={index}
                 variants={letterVariants}
