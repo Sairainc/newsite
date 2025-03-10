@@ -30,7 +30,7 @@ export default function ContactSection() {
     
     try {
       // GAS（Google Apps Script）のWebアプリURLを設定
-      const gasUrl = 'https://script.google.com/macros/s/AKfycby_C-kdlYxkSusrg1lmGcvwjGUJnO3GDQXMCZAqQ3eZEJYYCbVbh2Hp6ezTf6681sYTDw/exec'
+      const gasUrl = 'https://script.google.com/macros/s/AKfycbzhCbVwdYed-yqAx-aGFTD9c2esqgN5diMtSzM2aM8EM6VxkXTvFI-_MOfP0Bpsbwsc1g/exec'
       
       // URLSearchParamsを使用してフォームデータを送信
       const formDataUrlEncoded = new URLSearchParams()
