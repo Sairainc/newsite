@@ -216,10 +216,10 @@ export default function AboutPage() {
           >
             <div className="space-y-6">
               {[
-                { label: "会社名", value: "株式会社〇〇〇〇" },
-                { label: "設立", value: "2020年4月" },
+                { label: "会社名", value: "株式会社Saira" },
+                { label: "設立", value: "2024年10月" },
                 { label: "代表者", value: "代表取締役CEO 佐藤 遼河" },
-                { label: "所在地", value: "〒150-0002\n東京都渋谷区渋谷2-1-1 渋谷スクエアビル 15F" },
+                { label: "所在地", value: "〒252-0201\n神奈川県相模原市 中央区上矢部" },
                 { 
                   label: "事業内容",
                   value: [

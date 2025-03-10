@@ -22,14 +22,19 @@ export default function NewsPage() {
   return (
     <div className="bg-white min-h-screen pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <motion.h1 
-          className="text-4xl font-bold text-gray-900 mb-12"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          ニュース一覧
-        </motion.h1>
+        <div className="text-center mb-12">
+          <span className="text-blue-600 font-semibold text-lg mb-4 block">News</span>
+          <motion.h1 
+            className="text-4xl font-bold text-gray-900 mb-6"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.02 }}
+          >
+            ニュース一覧
+          </motion.h1>
+          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mb-8 rounded-full"></div>
+        </div>
 
         <motion.div 
           className="space-y-6"

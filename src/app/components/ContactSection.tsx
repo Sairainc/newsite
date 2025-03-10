@@ -107,6 +107,12 @@ export default function ContactSection() {
   return (
     <section className="py-12 relative overflow-hidden bg-white" id="contact">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="text-center mb-12">
+          <span className="text-blue-600 font-semibold text-lg mb-4 block">Contact</span>
+          <h2 className="text-4xl font-bold text-gray-900 mb-6">お問い合わせ</h2>
+          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mb-8 rounded-full"></div>
+        </div>
+        
         <div className="max-w-3xl mx-auto">
           <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12">
             {submitStatus === 'success' ? (
