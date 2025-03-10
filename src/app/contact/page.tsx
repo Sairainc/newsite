@@ -46,7 +46,7 @@ export default function ContactPage() {
         animate="visible"
         variants={fadeInUp}
       >
-        <ContactSection />
+        <ContactSection showTitle={false} />
       </motion.div>
     </div>
   )
