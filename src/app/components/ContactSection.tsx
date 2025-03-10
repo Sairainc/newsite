@@ -16,8 +16,24 @@ interface ContactSectionProps {
 
 // reCAPTCHAラッパーコンポーネント
 const ContactSectionWithRecaptcha = ({ showTitle = true }: ContactSectionProps) => {
+  // サイトキーの取得（複数の方法を試して最も確実なものを選択）
+  const recaptchaSiteKey = 
+    // next.config.jsのenv経由
+    (typeof window !== 'undefined' && (window as any).__NEXT_DATA__?.runtimeConfig?.NEXT_PUBLIC_RECAPTCHA_SITE_KEY) ||
+    // 直接環境変数から
+    process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ||
+    // ハードコードされた値（最後の手段）
+    '6LfDw-8qAAAAABo9Wrd4gcTnmdWvG7s8GAtcKMLG'
+  
+  // キーが存在しない場合のエラーログ
+  if (!recaptchaSiteKey) {
+    console.error('reCAPTCHA site key is missing!')
+  } else {
+    console.log('Using reCAPTCHA with key:', recaptchaSiteKey.substring(0, 5) + '...')
+  }
+  
   return (
-    <GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}>
+    <GoogleReCaptchaProvider reCaptchaKey={recaptchaSiteKey}>
       <ContactSectionContent showTitle={showTitle} />
     </GoogleReCaptchaProvider>
   )
