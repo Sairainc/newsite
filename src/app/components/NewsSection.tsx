@@ -65,7 +65,7 @@ export default function NewsSection() {
   }
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50 overflow-hidden">
       <motion.div 
         className="max-w-7xl mx-auto"
         initial="hidden"

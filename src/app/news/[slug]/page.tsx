@@ -63,44 +63,46 @@ export default function NewsDetail() {
   }
 
   return (
-    <motion.div 
-      className="max-w-3xl mx-auto px-4 py-12 bg-white"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="mb-8">
-        <Link 
-          href="/news"
-          className="text-gray-600 hover:text-gray-900 flex items-center"
-        >
-          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-          </svg>
-          ニュース一覧に戻る
-        </Link>
-      </div>
-
-      <article className="text-gray-900">
-        <div className="flex items-center space-x-4 mb-4">
-          <span className="text-gray-500">{article.date}</span>
-          <span className="px-3 py-1 bg-[#0066CC] text-white text-sm rounded-full">
-            {article.category}
-          </span>
+    <div className="bg-white min-h-screen pt-24">
+      <motion.div 
+        className="max-w-3xl mx-auto px-4 py-12 bg-white"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="mb-8">
+          <Link 
+            href="/news"
+            className="text-gray-600 hover:text-gray-900 flex items-center"
+          >
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            ニュース一覧に戻る
+          </Link>
         </div>
-        
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">
-          {article.title}
-        </h1>
 
-        <div className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-800">
-          {article.content.split('\n\n').map((paragraph, index) => (
-            <p key={index} className="mb-4">
-              {paragraph}
-            </p>
-          ))}
-        </div>
-      </article>
-    </motion.div>
+        <article className="text-gray-900">
+          <div className="flex items-center space-x-4 mb-4">
+            <span className="text-gray-500">{article.date}</span>
+            <span className="px-3 py-1 bg-[#0066CC] text-white text-sm rounded-full">
+              {article.category}
+            </span>
+          </div>
+          
+          <h1 className="text-3xl font-bold text-gray-900 mb-8">
+            {article.title}
+          </h1>
+
+          <div className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-800">
+            {article.content.split('\n\n').map((paragraph, index) => (
+              <p key={index} className="mb-4">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        </article>
+      </motion.div>
+    </div>
   )
 } 
