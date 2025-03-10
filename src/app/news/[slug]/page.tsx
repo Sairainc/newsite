@@ -84,7 +84,7 @@ export default function NewsDetail() {
       <article className="text-gray-900">
         <div className="flex items-center space-x-4 mb-4">
           <span className="text-gray-500">{article.date}</span>
-          <span className="px-3 py-1 bg-[#00E085] text-white text-sm rounded-full">
+          <span className="px-3 py-1 bg-[#0066CC] text-white text-sm rounded-full">
             {article.category}
           </span>
         </div>

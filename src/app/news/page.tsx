@@ -46,7 +46,7 @@ export default function NewsPage() {
               <div className="block bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
                 <div className="flex items-center space-x-4 mb-2">
                   <span className="text-gray-500">{article.date}</span>
-                  <span className="px-3 py-1 bg-[#00E085] text-white text-sm rounded-full">
+                  <span className="px-3 py-1 bg-[#0066CC] text-white text-sm rounded-full">
                     {article.category}
                   </span>
                 </div>

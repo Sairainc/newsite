@@ -86,7 +86,7 @@ export default function SolutionSection() {
   }
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+    <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
       <motion.div 
         className="max-w-7xl mx-auto"
         initial="hidden"
@@ -96,15 +96,15 @@ export default function SolutionSection() {
       >
         <motion.div
           variants={titleVariants}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <span className="text-blue-600 font-semibold text-lg mb-4 block">Solutions</span>
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">ソリューション</h2>
-          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mb-8 rounded-full"></div>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">地域課題を解決するAIソリューション</p>
+          <span className="text-blue-600 font-semibold text-base sm:text-lg mb-3 sm:mb-4 block">Solutions</span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">ソリューション</h2>
+          <div className="w-20 sm:w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mb-6 sm:mb-8 rounded-full"></div>
+          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed px-2">地域課題を解決するAIソリューション</p>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {solutions.map((solution, index) => (
             <motion.div
               key={solution.id}
@@ -117,14 +117,14 @@ export default function SolutionSection() {
             >
               <Link href={solution.link} className="block group">
                 <motion.div 
-                  className="bg-gray-50 p-8 rounded-lg transition-all duration-300"
+                  className="bg-gray-50 p-6 sm:p-8 rounded-lg transition-all duration-300"
                   whileHover={{
                     backgroundColor: "rgba(255, 255, 255, 1)",
                     boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)"
                   }}
                 >
                   <motion.div 
-                    className="bg-white p-3 rounded-full w-12 h-12 flex items-center justify-center shadow-sm mb-6 text-blue-600"
+                    className="bg-white p-3 rounded-full w-12 h-12 flex items-center justify-center shadow-sm mb-5 sm:mb-6 text-blue-600"
                     whileHover={{
                       scale: 1.1,
                       rotate: 360,
@@ -134,12 +134,12 @@ export default function SolutionSection() {
                     {solution.icon}
                   </motion.div>
                   <motion.h3 
-                    className="text-xl font-bold text-gray-900 mb-4"
+                    className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4"
                     whileHover={{ scale: 1.02 }}
                   >
                     {solution.title}
                   </motion.h3>
-                  <p className="text-gray-600 mb-6 text-sm leading-relaxed">
+                  <p className="text-gray-600 mb-5 sm:mb-6 text-sm leading-relaxed">
                     {solution.description}
                   </p>
                   <motion.div 

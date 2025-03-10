@@ -12,6 +12,7 @@ export default function HeroSection() {
   const [lastScrollY, setLastScrollY] = useState(0)
   const rafRef = useRef<number | null>(null)
   const ticking = useRef(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   // スクロールハンドラを最適化
   const handleScroll = useCallback(() => {
@@ -158,27 +159,102 @@ export default function HeroSection() {
         hidden ? '-translate-y-full' : 'translate-y-0'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <Link href="/" className="text-2xl font-bold tracking-wider text-gray-900">
+          <div className="flex justify-between items-center h-16 md:h-20">
+            <Link href="/" className="text-xl md:text-2xl font-bold tracking-wider text-gray-900">
               Saira
             </Link>
-            <nav className="flex items-center space-x-8">
+            
+            {/* デスクトップナビゲーション */}
+            <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
               <Link href="/about" className="text-gray-700 hover:text-[#0066CC]">私たちについて</Link>
               <Link href="/services" className="text-gray-700 hover:text-[#0066CC]">事業・サービス</Link>
               <Link href="/news" className="text-gray-700 hover:text-[#0066CC]">ニュース</Link>
-              <Link href="/contact" className="ml-4 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
+              <Link href="/contact" className="ml-4 px-5 py-2 md:px-6 md:py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors text-sm md:text-base">
                 お問い合わせ
               </Link>
             </nav>
+            
+            {/* モバイルメニューボタン */}
+            <button 
+              className="md:hidden p-2 focus:outline-none" 
+              aria-label="メニュー"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              <svg
+                className="h-6 w-6 text-gray-900"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                {mobileMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
           </div>
+
+          {/* モバイルメニュー */}
+          {mobileMenuOpen && (
+            <motion.div 
+              className="md:hidden pt-2 pb-4"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+                <div className="px-3 py-2 space-y-1">
+                  <Link 
+                    href="/about" 
+                    className="block px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-100 rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    私たちについて
+                  </Link>
+                  <Link 
+                    href="/services" 
+                    className="block px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-100 rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    事業・サービス
+                  </Link>
+                  <Link 
+                    href="/news" 
+                    className="block px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-100 rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    ニュース
+                  </Link>
+                  <Link 
+                    href="/contact" 
+                    className="block px-3 py-2 mt-3 text-center text-white bg-blue-600 hover:bg-blue-700 transition-colors rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    お問い合わせ
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          )}
         </div>
       </header>
 
       {/* 固定位置のテキストコンテナ */}
-      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden pt-20 will-change-transform">
+      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-20 will-change-transform">
         <motion.h1 
           ref={textRef}
-          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-gray-900 text-center transition-transform duration-300"
+          className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-900 text-center transition-transform duration-300 px-4"
           style={{ transformOrigin: 'center center' }}
           initial="hidden"
           animate="visible"
@@ -246,7 +322,7 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <div className="flex-1 flex items-center justify-center">
-              <h2 className="text-5xl md:text-7xl font-bold text-white drop-shadow-lg tracking-wider">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white drop-shadow-lg tracking-wider px-4 text-center">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">AI</span>
                 <span className="mx-4 text-white">×</span>
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600">地方創生</span>
