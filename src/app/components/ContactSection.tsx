@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 
 // formSubmitCallbackのための型拡張
 declare global {
@@ -13,13 +14,26 @@ interface ContactSectionProps {
   showTitle?: boolean;
 }
 
-export default function ContactSection({ showTitle = true }: ContactSectionProps) {
+// reCAPTCHAラッパーコンポーネント
+const ContactSectionWithRecaptcha = ({ showTitle = true }: ContactSectionProps) => {
+  return (
+    <GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}>
+      <ContactSectionContent showTitle={showTitle} />
+    </GoogleReCaptchaProvider>
+  )
+}
+
+// メインのコンタクトフォームコンポーネント
+function ContactSectionContent({ showTitle = true }: ContactSectionProps) {
+  const { executeRecaptcha } = useGoogleReCaptcha()
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     company: '',
     phone: '',
-    message: ''
+    message: '',
+    website: ''
   })
   
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -28,11 +42,54 @@ export default function ContactSection({ showTitle = true }: ContactSectionProps
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    if (formData.website) {
+      console.log('Honeypot field triggered - potential spam bot detected')
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        phone: '',
+        message: '',
+        website: ''
+      })
+      setSubmitStatus('success')
+      return
+    }
+    
+    if (!executeRecaptcha) {
+      setSubmitStatus('error')
+      setErrorMessage('reCAPTCHAの読み込みに失敗しました。ページをリロードして再度お試しください。')
+      return
+    }
+    
     setIsSubmitting(true)
     setSubmitStatus('idle')
     setErrorMessage('')
     
     try {
+      // reCAPTCHAトークンを取得
+      const recaptchaToken = await executeRecaptcha('contact_form')
+      
+      if (!recaptchaToken) {
+        throw new Error('reCAPTCHAの検証に失敗しました')
+      }
+      
+      // Next.js APIでreCAPTCHAを検証
+      const verificationResponse = await fetch('/api/recaptcha/verify', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ token: recaptchaToken })
+      })
+      
+      const verificationResult = await verificationResponse.json()
+      
+      if (!verificationResult.success) {
+        throw new Error(verificationResult.error || 'reCAPTCHAの検証に失敗しました')
+      }
+      
       // GAS（Google Apps Script）のWebアプリURLを設定
       const gasUrl = 'https://script.google.com/macros/s/AKfycbzIBKMPqfmIcx9igcCfZHDpk-v4L1itLT8f6kg-MBX0L-IXkVrfoag9iwTiNblAwCsPpw/exec'
       
@@ -41,6 +98,9 @@ export default function ContactSection({ showTitle = true }: ContactSectionProps
       Object.entries(formData).forEach(([key, value]) => {
         formDataUrlEncoded.append(key, value)
       })
+      
+      // reCAPTCHAトークンを追加
+      formDataUrlEncoded.append('recaptchaToken', recaptchaToken)
       
       try {
         // 方法1: fetch APIを使用した送信
@@ -60,6 +120,7 @@ export default function ContactSection({ showTitle = true }: ContactSectionProps
         // 方法2: JSONPを使った代替送信方法（フォールバック）
         const jsonpUrl = `${gasUrl}?${new URLSearchParams({
           ...formData,
+          recaptchaToken,
           callback: 'formSubmitCallback'
         }).toString()}`
         
@@ -88,7 +149,8 @@ export default function ContactSection({ showTitle = true }: ContactSectionProps
         email: '',
         company: '',
         phone: '',
-        message: ''
+        message: '',
+        website: ''
       })
       
       setSubmitStatus('success')
@@ -135,7 +197,7 @@ export default function ContactSection({ showTitle = true }: ContactSectionProps
                   新しい問い合わせを作成
                 </button>
               </div>
-            ) : (
+            ) :
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
@@ -223,6 +285,21 @@ export default function ContactSection({ showTitle = true }: ContactSectionProps
                   ></textarea>
                 </div>
 
+                <div style={{ display: 'none' }}>
+                  <label htmlFor="website" className="hidden">
+                    ウェブサイト
+                  </label>
+                  <input
+                    type="text"
+                    id="website"
+                    name="website"
+                    value={formData.website}
+                    onChange={handleChange}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
+
                 {submitStatus === 'error' && (
                   <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-600">
                     <p>{errorMessage}</p>
@@ -233,11 +310,7 @@ export default function ContactSection({ showTitle = true }: ContactSectionProps
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`inline-flex items-center px-8 py-4 border border-transparent text-lg font-semibold rounded-full text-white ${
-                      isSubmitting 
-                        ? 'bg-gray-400 cursor-not-allowed' 
-                        : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-lg transform transition-all duration-200 hover:scale-105'
-                    }`}
+                    className={`inline-flex items-center px-8 py-4 border border-transparent text-base font-semibold rounded-full shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 ${isSubmitting ? 'opacity-75 cursor-not-allowed' : ''}`}
                   >
                     {isSubmitting ? (
                       <>
@@ -247,21 +320,26 @@ export default function ContactSection({ showTitle = true }: ContactSectionProps
                         </svg>
                         送信中...
                       </>
-                    ) : (
-                      <>
-                        送信する
-                        <svg className="ml-3 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                        </svg>
-                      </>
-                    )}
+                    ) : '送信する'}
                   </button>
+                  <p className="mt-4 text-xs text-gray-500">
+                    このサイトはGoogle reCAPTCHAで保護されています。
+                    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline">
+                      プライバシーポリシー
+                    </a>と
+                    <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="underline">
+                      利用規約
+                    </a>が適用されます。
+                  </p>
                 </div>
               </form>
-            )}
+            }
           </div>
         </div>
       </div>
     </section>
   )
-} 
+}
+
+// デフォルトエクスポートをラッパーコンポーネントに変更
+export default ContactSectionWithRecaptcha 
