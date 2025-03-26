@@ -1376,6 +1376,9 @@
     justify-content: center;
     max-width: 800px;
     margin: 0 auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .price__plan--single {
@@ -1389,6 +1392,7 @@
     position: relative;
     border: 2px solid var(--color-primary);
     padding-top: 2rem;
+    box-sizing: border-box;
 }
 
 .price__plan--single:hover {
@@ -1548,6 +1552,7 @@
 @media (max-width: 768px) {
     .price__plan-features {
         grid-template-columns: 1fr;
+        gap: 1rem;
     }
     
     .price__plan-features li {
@@ -1555,7 +1560,7 @@
     }
     
     .price__plan-title {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
     
     .price__plan-price span {
@@ -1566,20 +1571,87 @@
     .price__cta-text {
         font-size: 1.1rem;
     }
+    
+    .price__plan-badge {
+        top: -12px;
+        padding: 0.4rem 1.2rem;
+    }
+    
+    .price__plan--single {
+        max-width: 95%;
+        margin: 0 auto;
+    }
 }
 
 @media (max-width: 576px) {
     .price__plan-price span {
-        font-size: 2.5rem;
+        font-size: 2.6rem;
     }
     
     .price__plan-badge {
-        padding: 0.4rem 1.2rem;
-        font-size: 0.9rem;
+        font-size: 0.8rem;
+        padding: 0.35rem 1rem;
     }
     
     .price__plan-badge .material-icons {
         font-size: 1rem;
+    }
+    
+    .price__intro-highlight {
+        font-size: 0.95rem;
+        padding: 0.7rem 1.2rem;
+        width: 90%;
+        max-width: 300px;
+    }
+    
+    .price__intro-highlight span {
+        font-size: 1.2rem;
+    }
+    
+    .price__plan-subtitle {
+        font-size: 1rem;
+    }
+    
+    .price__plan-header,
+    .price__plan-body,
+    .price__plan-footer {
+        padding: 1.5rem 1rem;
+    }
+    
+    .price__value-message {
+        font-size: 1rem;
+        padding: 0.6rem 1rem;
+    }
+    
+    .price__notes {
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .price__plan-price span {
+        font-size: 2.2rem;
+    }
+    
+    .price__plan--single {
+        max-width: 100%;
+        border-width: 1px;
+    }
+    
+    .price__intro-highlight {
+        width: 100%;
+    }
+    
+    .price__plan-features li {
+        font-size: 0.9rem;
+    }
+    
+    .price__plan-features li .material-icons {
+        font-size: 1.1rem;
+    }
+    
+    .price__plan-title {
+        font-size: 1.4rem;
     }
 }
 
