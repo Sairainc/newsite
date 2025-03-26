@@ -10,12 +10,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "会社名 - AIで地方創生を実現する",
+  title: "株式会社Saira - AIで地方創生を実現する",
   description: "最先端のテクノロジーで地域の課題を解決し、持続可能な未来を創造します",
   keywords: "AI, 地方創生, テクノロジー, イノベーション, 持続可能, 未来",
-  authors: [{ name: "会社名" }],
-  creator: "会社名",
-  publisher: "会社名",
+  authors: [{ name: "株式会社Saira" }],
+  creator: "株式会社Saira",
+  publisher: "株式会社Saira",
   formatDetection: {
     email: false,
     telephone: false,
