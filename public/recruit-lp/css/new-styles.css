@@ -1387,11 +1387,12 @@
     background-color: var(--color-white);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-lg);
-    overflow: hidden;
+    overflow: visible;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     border: 2px solid var(--color-primary);
     padding-top: 2rem;
+    margin-top: 15px;
     box-sizing: border-box;
 }
 
@@ -1402,7 +1403,7 @@
 
 .price__plan-badge {
     position: absolute;
-    top: -15px;
+    top: -12px;
     left: 50%;
     transform: translateX(-50%);
     background-color: var(--color-primary);
