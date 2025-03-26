@@ -5793,14 +5793,44 @@ ul, ol {
 }
 
 .service__table th.highlight {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  background: linear-gradient(135deg, var(--color-primary), #3b5de7);
   color: #ffffff;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.2);
+  position: relative;
+  border-radius: 4px 4px 0 0;
+  padding: 18px 15px;
+}
+
+.service__table th.highlight::after {
+  content: '✓ おすすめ';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ef4444;
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .service__table td.highlight {
   position: relative;
-  background: rgba(67, 97, 238, 0.03);
-  font-weight: 600;
+  background: rgba(37, 99, 235, 0.08);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  border-left: 1px solid rgba(37, 99, 235, 0.2);
+  border-right: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+.service__table tr:last-child td.highlight {
+  border-radius: 0 0 4px 4px;
+  border-bottom: 1px solid rgba(37, 99, 235, 0.2);
 }
 
 .service__table td.highlight::before {
@@ -5808,6 +5838,16 @@ ul, ol {
   position: absolute;
   top: 0;
   left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--color-primary);
+}
+
+.service__table td.highlight::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
   width: 3px;
   height: 100%;
   background: var(--color-primary);
