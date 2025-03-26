@@ -60,7 +60,8 @@ async function saveToGoogleSheet(data: any) {
     });
 
     // スプレッドシートの初期化
-    const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID!, serviceAccountAuth);
+    const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID!);
+    await doc.useServiceAccountAuth(serviceAccountAuth);
     await doc.loadInfo();
     
     // 最初のシートを使用（必要に応じて特定のシート名を指定可能）
