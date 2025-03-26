@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // 設定オプションをここに追加
+  images: {
+    unoptimized: true,
+  },
+  assetPrefix: '',
+  basePath: '',
 }
 
 module.exports = nextConfig 

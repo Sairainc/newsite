@@ -1,173 +1,59 @@
-'use client'
-
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 export default function AboutPage() {
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 60 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  }
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  }
-
   return (
-    <div className="bg-gradient-to-b from-white to-gray-50">
-      {/* タイトルセクション */}
-      <section className="pt-32 pb-16 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-24">
-            <span className="text-blue-600 font-semibold text-lg mb-4 block">About Us</span>
-            <h2 className="text-5xl font-bold text-gray-900 mb-6">私たちについて</h2>
-            <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mb-8 rounded-full"></div>
-          </div>
+    <div>
+      {/* ヒーローセクション */}
+      <section className="pt-32 pb-16 bg-gradient-to-b from-blue-50 to-white relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-white opacity-90"></div>
+          <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
         </div>
-      </section>
-
-      {/* ミッション・ビジョンセクション */}
-      <section className="pt-32 pb-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#E1F5FF,transparent)]" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 gap-16"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            <motion.div 
-              className="text-center md:text-left bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300"
-              variants={fadeInUp}
-            >
-              <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent mb-8">ミッション</h2>
-              <p className="text-2xl text-gray-700 leading-relaxed">
-                AIのちからで地方を元気にする
-              </p>
-            </motion.div>
-            <motion.div 
-              className="text-center md:text-left bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300"
-              variants={fadeInUp}
-            >
-              <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent mb-8">ビジョン</h2>
-              <p className="text-2xl text-gray-700 leading-relaxed">
-                テクノロジーの力で地方の可能性を最大化し、<br />
-                持続可能な地域社会を創造する
-              </p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* バリューセクション */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#F0F9FF,transparent)]" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <motion.div 
-            className="text-center mb-16"
+            className="text-center"
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent mb-4">バリュー</h2>
-          </motion.div>
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            {[
-              {
-                number: "1",
-                title: "LOCAL FIRST",
-                subtitle: "地域への深い共感",
-                description: "わたしたちは地域の文化や価値観を尊重し、地元の人々と一緒になって課題に向き合う。当事者の視点で考え、共に行動する姿勢を大切にする。"
-              },
-              {
-                number: "2",
-                title: "CO-CREATION",
-                subtitle: "共創するマインド",
-                description: "AIやテクノロジーは単なるツールに過ぎない。地域企業や行政、住民と共に課題を共有し、一緒に答えを見つけ出すことこそ、真のDXと地方創生につながる。"
-              },
-              {
-                number: "3",
-                title: "BE BOLD",
-                subtitle: "大胆に挑戦しよう",
-                description: "新しい技術や未知の分野に臆することなく飛び込み、大胆な挑戦を歓迎する。スピード感を持って積極的にトライし、成功も失敗も次のステップへの糧にする。"
-              }
-            ].map((value, index) => (
-              <motion.div 
-                key={index}
-                className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-                variants={fadeInUp}
-              >
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 transform rotate-3">
-                  <span className="text-2xl font-bold text-white">{value.number}</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{value.title}</h3>
-                <h4 className="text-lg font-medium text-blue-600 mb-4">{value.subtitle}</h4>
-                <p className="text-gray-600 leading-relaxed">
-                  {value.description}
-                </p>
-              </motion.div>
-            ))}
+            <h1 className="text-5xl font-bold text-gray-900 mb-8">
+              AIのちからで地方を元気にする
+            </h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              私たちは、最先端のテクノロジーを活用して地域の課題を解決し、<br />
+              持続可能な地域社会の実現に貢献します。
+            </p>
           </motion.div>
         </div>
       </section>
 
       {/* 代表メッセージセクション */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,#E1F5FF,transparent)]" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            variants={staggerContainer}
+            transition={{ duration: 0.8 }}
           >
-            <motion.div 
-              className="relative group"
-              variants={fadeInUp}
-            >
-              <div className="aspect-w-4 aspect-h-5 rounded-2xl overflow-hidden shadow-2xl transform group-hover:scale-[1.02] transition-transform duration-300">
+            <div className="relative">
+              <div className="aspect-w-4 aspect-h-5 rounded-2xl overflow-hidden">
                 <Image
                   src="/images/L1410380.jpg"
-                  alt="代表取締役CEO 佐藤 遼河"
-                  width={400}
-                  height={500}
-                  className="object-cover w-full h-full"
-                  priority
+                  alt="代表取締役CEO 山田 太郎"
+                  fill
+                  className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
               </div>
-              <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-blue-50 rounded-full -z-10 transform group-hover:scale-110 transition-transform duration-300" />
-            </motion.div>
-            <motion.div 
-              variants={fadeInUp}
-              className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-xl"
-            >
+              <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-blue-50 rounded-full -z-10"></div>
+            </div>
+            <div>
               <span className="text-blue-600 font-medium mb-4 block">Message from CEO</span>
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-8">
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">
                 テクノロジーの力で、<br />
                 地域に新たな価値を
               </h2>
@@ -182,87 +68,162 @@ export default function AboutPage() {
                   テクノロジーの力を活用し、地域の皆様と共に、これらの課題を一つひとつ解決していくことで、持続可能で活力ある地域社会の実現を目指してまいります。
                 </p>
               </div>
-              <div className="mt-8 flex items-center gap-4">
-                <div>
-                  <p className="text-xl font-bold text-gray-900">佐藤 遼河</p>
-                  <p className="text-gray-600">代表取締役CEO</p>
-                </div>
-                <div className="flex-grow border-t border-gray-200" />
+              <div className="mt-8">
+                <p className="text-xl font-bold text-gray-900">山田 太郎</p>
+                <p className="text-gray-600">代表取締役CEO</p>
               </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ミッションセクション */}
+      <section className="py-24 bg-gradient-to-b from-white to-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">ミッション</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              テクノロジーの力で、地域の可能性を最大限に引き出し、<br />
+              誰もが活き活きと暮らせる社会を創造します。
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* バリューセクション */}
+      <section className="py-24 bg-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">バリュー</h2>
+          </motion.div>
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <motion.div 
+              className="bg-white p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform duration-300"
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">イノベーション</h3>
+              <p className="text-gray-600">
+                常に最新のテクノロジーを追求し、革新的なソリューションを生み出します。
+              </p>
+            </motion.div>
+            <motion.div 
+              className="bg-white p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform duration-300"
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">地域共創</h3>
+              <p className="text-gray-600">
+                地域の皆様と共に考え、共に創り、共に成長していきます。
+              </p>
+            </motion.div>
+            <motion.div 
+              className="bg-white p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform duration-300"
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">持続可能性</h3>
+              <p className="text-gray-600">
+                長期的な視点で、持続可能な地域社会の実現に貢献します。
+              </p>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* 会社概要セクション */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#F0F9FF,transparent)]" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
           >
-            <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent mb-4">会社概要</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">会社概要</h2>
           </motion.div>
           <motion.div 
-            className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-xl max-w-4xl mx-auto hover:shadow-2xl transition-shadow duration-300"
+            className="bg-white p-8 rounded-xl shadow-lg max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div className="space-y-6">
-              {[
-                { label: "会社名", value: "株式会社Saira" },
-                { label: "設立", value: "2024年10月" },
-                { label: "代表者", value: "代表取締役CEO 佐藤 遼河" },
-                { label: "所在地", value: "〒252-0201\n神奈川県相模原市 中央区上矢部" },
-                { 
-                  label: "事業内容",
-                  value: [
-                    "AIを活用した地方創生ソリューションの開発・提供",
-                    "地域データ分析・コンサルティングサービス",
-                    "地方自治体向けDX支援",
-                    "地域産業のデジタル化支援"
-                  ]
-                }
-              ].map((item, index) => (
-                <div key={index} className="flex flex-col md:flex-row border-b border-gray-200 pb-6 last:border-0 last:pb-0">
-                  <div className="w-full md:w-1/3 font-medium text-gray-700">{item.label}</div>
-                  <div className="w-full md:w-2/3 text-gray-900">
-                    {Array.isArray(item.value) ? (
-                      <ul className="list-disc pl-5 space-y-2">
-                        {item.value.map((v, i) => (
-                          <li key={i}>{v}</li>
-                        ))}
-                      </ul>
-                    ) : (
-                      item.value.split('\n').map((line, i) => (
-                        <div key={i}>{line}</div>
-                      ))
-                    )}
-                  </div>
+              <div className="flex flex-col md:flex-row border-b border-gray-200 pb-6">
+                <div className="w-full md:w-1/3 font-medium text-gray-700">会社名</div>
+                <div className="w-full md:w-2/3 text-gray-900">株式会社〇〇〇〇</div>
+              </div>
+              <div className="flex flex-col md:flex-row border-b border-gray-200 pb-6">
+                <div className="w-full md:w-1/3 font-medium text-gray-700">設立</div>
+                <div className="w-full md:w-2/3 text-gray-900">2020年4月</div>
+              </div>
+              <div className="flex flex-col md:flex-row border-b border-gray-200 pb-6">
+                <div className="w-full md:w-1/3 font-medium text-gray-700">代表者</div>
+                <div className="w-full md:w-2/3 text-gray-900">代表取締役CEO 山田 太郎</div>
+              </div>
+              <div className="flex flex-col md:flex-row border-b border-gray-200 pb-6">
+                <div className="w-full md:w-1/3 font-medium text-gray-700">所在地</div>
+                <div className="w-full md:w-2/3 text-gray-900">
+                  〒150-0002<br />
+                  東京都渋谷区渋谷2-1-1 渋谷スクエアビル 15F
                 </div>
-              ))}
+              </div>
+              <div className="flex flex-col md:flex-row">
+                <div className="w-full md:w-1/3 font-medium text-gray-700">事業内容</div>
+                <div className="w-full md:w-2/3 text-gray-900">
+                  <ul className="list-disc pl-5 space-y-2">
+                    <li>AIを活用した地方創生ソリューションの開発・提供</li>
+                    <li>地域データ分析・コンサルティングサービス</li>
+                    <li>地方自治体向けDX支援</li>
+                    <li>地域産業のデジタル化支援</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* お問い合わせセクション */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-700" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,white/10,transparent)]" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <section className="py-24 bg-gradient-to-br from-blue-600 to-blue-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
+            transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl font-bold text-white mb-6">お問い合わせ</h2>
             <p className="text-xl text-blue-100 mb-12 max-w-3xl mx-auto">
@@ -276,15 +237,10 @@ export default function AboutPage() {
             >
               <Link
                 href="/contact"
-                className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-full font-medium shadow-lg inline-flex items-center gap-2 group"
+                className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-full font-medium shadow-lg inline-flex items-center space-x-2"
               >
                 <span>お問い合わせ</span>
-                <svg 
-                  className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
               </Link>
