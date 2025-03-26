@@ -148,6 +148,212 @@
         margin-bottom: 1.5rem;
         text-align: center;
       }
+
+      /* フォームスタイルの改善 */
+      .form__header {
+          background-color: #f1f8fe;
+          border-radius: 8px;
+          padding: 16px;
+          margin-bottom: 24px;
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 10px;
+          border-left: 4px solid #2563eb;
+      }
+
+      .form__header span.material-icons {
+          color: #2563eb;
+          font-size: 24px;
+      }
+
+      .form__header h4 {
+          font-weight: 600;
+          margin: 0;
+          font-size: 1rem;
+          flex: 1;
+      }
+
+      .form__header p {
+          width: 100%;
+          margin: 4px 0 0 0;
+          font-size: 0.85rem;
+          color: #64748b;
+      }
+
+      .contact__form {
+          background-color: #fff;
+          border-radius: 12px;
+          padding: 30px;
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+          margin-bottom: 60px;
+      }
+
+      .form__row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+          margin-bottom: 20px;
+      }
+
+      .form__group {
+          flex: 1;
+          min-width: 250px;
+          margin-bottom: 20px;
+      }
+
+      .form__label {
+          display: block;
+          margin-bottom: 8px;
+          font-weight: 600;
+          font-size: 0.9rem;
+      }
+
+      .form__required {
+          background-color: #ef4444;
+          color: white;
+          font-size: 0.7rem;
+          padding: 2px 6px;
+          border-radius: 4px;
+          margin-left: 5px;
+          font-weight: 500;
+      }
+
+      .form__input, .form__textarea, .form__select {
+          width: 100%;
+          padding: 12px 15px;
+          border: 2px solid #e2e8f0;
+          border-radius: 8px;
+          font-size: 1rem;
+          transition: all 0.3s ease;
+          background-color: #f8fafc;
+      }
+
+      .form__input:focus, .form__textarea:focus, .form__select:focus {
+          border-color: #2563eb;
+          background-color: #fff;
+          outline: none;
+          box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+      }
+
+      .form__input::placeholder, .form__textarea::placeholder {
+          color: #94a3b8;
+          font-size: 0.9rem;
+      }
+
+      .form__select-wrapper {
+          position: relative;
+      }
+
+      .form__select {
+          appearance: none;
+          padding-right: 40px;
+      }
+
+      .form__select-icon {
+          position: absolute;
+          right: 12px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: #64748b;
+          pointer-events: none;
+      }
+
+      .form__radio-group {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 15px;
+          margin-bottom: 10px;
+      }
+
+      .form__radio {
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+      }
+
+      .form__radio input[type="radio"] {
+          margin-right: 8px;
+          cursor: pointer;
+          width: 18px;
+          height: 18px;
+          accent-color: #2563eb;
+      }
+
+      .form__hint {
+          font-size: 0.8rem;
+          color: #64748b;
+          margin-top: 5px;
+      }
+
+      .form__privacy {
+          background-color: #f8fafc;
+          border-radius: 8px;
+          padding: 20px;
+          margin-bottom: 25px;
+          border: 1px solid #e2e8f0;
+      }
+
+      .form__checkbox-container {
+          display: flex;
+          align-items: flex-start;
+      }
+
+      .form__checkbox {
+          margin-right: 10px;
+          width: 18px;
+          height: 18px;
+          accent-color: #2563eb;
+          margin-top: 2px;
+      }
+
+      .form__group--checkbox {
+          margin-bottom: 10px;
+      }
+
+      .form__group--checkbox:last-child {
+          margin-bottom: 0;
+      }
+
+      .form__link {
+          color: #2563eb;
+          text-decoration: underline;
+          font-weight: 500;
+      }
+
+      .form__link:hover {
+          text-decoration: none;
+      }
+
+      .form__submit {
+          text-align: center;
+          margin-top: 30px;
+      }
+
+      .btn--full {
+          width: 100%;
+          max-width: 400px;
+      }
+
+      @media (max-width: 768px) {
+          .form__row {
+              flex-direction: column;
+              gap: 0;
+          }
+
+          .form__group {
+              min-width: 100%;
+          }
+
+          .contact__form {
+              padding: 20px;
+          }
+
+          .form__radio-group {
+              flex-direction: column;
+              gap: 10px;
+          }
+      }
     </style>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1002,47 +1208,51 @@
                     <h4>安全なフォーム送信</h4>
                     <p>情報は暗号化されて送信され、個人情報保護方針に基づき適切に管理されます</p>
                 </div>
+                
                 <div class="form__row">
                     <div class="form__group">
                         <label for="company" class="form__label">会社名 <span class="form__required">必須</span></label>
-                        <input type="text" id="company" name="company" class="form__input" required>
+                        <input type="text" id="company" name="company" class="form__input" placeholder="例：株式会社サンプル" required>
                     </div>
                     
                     <div class="form__group">
                         <label for="name" class="form__label">お名前 <span class="form__required">必須</span></label>
-                        <input type="text" id="name" name="name" class="form__input" required>
+                        <input type="text" id="name" name="name" class="form__input" placeholder="例：山田 太郎" required>
                     </div>
                 </div>
                 
                 <div class="form__row">
                     <div class="form__group">
                         <label for="email" class="form__label">メールアドレス <span class="form__required">必須</span></label>
-                        <input type="email" id="email" name="email" class="form__input" required>
+                        <input type="email" id="email" name="email" class="form__input" placeholder="例：info@example.com" required>
                     </div>
                     
                     <div class="form__group">
                         <label for="phone" class="form__label">電話番号</label>
-                        <input type="tel" id="phone" name="phone" class="form__input">
+                        <input type="tel" id="phone" name="phone" class="form__input" placeholder="例：03-1234-5678">
                     </div>
                 </div>
                 
                 <div class="form__row">
                     <div class="form__group">
                         <label for="industry" class="form__label">業種 <span class="form__required">必須</span></label>
-                        <select id="industry" name="industry" class="form__select" required>
-                            <option value="">選択してください</option>
-                            <option value="manufacturing">製造業</option>
-                            <option value="construction">建設業</option>
-                            <option value="it">IT・情報通信</option>
-                            <option value="retail">小売業</option>
-                            <option value="service">サービス業</option>
-                            <option value="other">その他</option>
-                        </select>
+                        <div class="form__select-wrapper">
+                            <select id="industry" name="industry" class="form__select" required>
+                                <option value="">選択してください</option>
+                                <option value="manufacturing">製造業</option>
+                                <option value="construction">建設業</option>
+                                <option value="it">IT・情報通信</option>
+                                <option value="retail">小売業</option>
+                                <option value="service">サービス業</option>
+                                <option value="other">その他</option>
+                            </select>
+                            <span class="material-icons form__select-icon">expand_more</span>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="form__group">
-                    <label for="contact_type" class="form__label">お問い合わせ種別 <span class="form__required">必須</span></label>
+                    <label class="form__label">お問い合わせ種別 <span class="form__required">必須</span></label>
                     <div class="form__radio-group">
                         <div class="form__radio">
                             <input type="radio" id="type_consultation" name="contact_type" value="consultation" required>
@@ -1061,27 +1271,35 @@
                 
                 <div class="form__group">
                     <label for="message" class="form__label">ご相談内容 <span class="form__required">必須</span></label>
-                    <textarea id="message" name="message" class="form__textarea" rows="5" required></textarea>
-                    <p class="form__hint">現在の採用課題や求める人材像などをお聞かせください。</p>
+                    <textarea id="message" name="message" class="form__textarea" rows="5" placeholder="現在の採用課題や求める人材像などをお聞かせください。" required></textarea>
+                    <p class="form__hint">※具体的な課題をお書きいただくとより具体的なご提案が可能です</p>
                 </div>
                 
-                <div class="form__group form__group--checkbox">
-                    <input type="checkbox" id="privacy" name="privacy" class="form__checkbox" required>
-                    <label for="privacy" class="form__checkbox-label">
-                        <a href="#" target="_blank">個人情報保護方針</a>に同意します
-                    </label>
+                <div class="form__privacy">
+                    <div class="form__group form__group--checkbox">
+                        <div class="form__checkbox-container">
+                            <input type="checkbox" id="privacy" name="privacy" class="form__checkbox" required>
+                            <label for="privacy" class="form__checkbox-label">
+                                <a href="#" target="_blank" class="form__link">個人情報保護方針</a>に同意します
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form__group form__group--checkbox">
+                        <div class="form__checkbox-container">
+                            <input type="checkbox" id="newsletter" name="newsletter" class="form__checkbox">
+                            <label for="newsletter" class="form__checkbox-label">
+                                採用マーケティングに関する最新情報を受け取る
+                            </label>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="form__group form__group--checkbox">
-                    <input type="checkbox" id="newsletter" name="newsletter" class="form__checkbox">
-                    <label for="newsletter" class="form__checkbox-label">
-                        採用マーケティングに関する最新情報を受け取る
-                    </label>
+                <div class="form__submit">
+                    <button type="submit" class="btn btn--large btn--primary btn--rounded btn--icon btn--full">
+                        <span class="material-icons">send</span>送信する
+                    </button>
                 </div>
-                
-                <button type="submit" class="btn btn--large btn--primary btn--rounded btn--icon">
-                    <span class="material-icons">send</span>送信する
-                </button>
             </form>
             
             <div class="contact__flow" data-aos="fade-up" data-aos-delay="600">
