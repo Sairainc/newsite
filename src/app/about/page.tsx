@@ -46,7 +46,7 @@ export default function AboutPage() {
               <div className="aspect-w-4 aspect-h-5 rounded-2xl overflow-hidden">
                 <Image
                   src="/images/L1410380.jpg"
-                  alt="代表取締役CEO 山田 太郎"
+                  alt="代表取締役CEO 佐藤 遼河"
                   fill
                   className="object-cover"
                 />
@@ -71,7 +71,7 @@ export default function AboutPage() {
                 </p>
               </div>
               <div className="mt-8">
-                <p className="text-xl font-bold text-gray-900">山田 太郎</p>
+                <p className="text-xl font-bold text-gray-900">佐藤 遼河</p>
                 <p className="text-gray-600">代表取締役CEO</p>
               </div>
             </div>
@@ -185,7 +185,7 @@ export default function AboutPage() {
             <div className="space-y-6">
               <div className="flex flex-col md:flex-row border-b border-gray-200 pb-6">
                 <div className="w-full md:w-1/3 font-medium text-gray-700">会社名</div>
-                <div className="w-full md:w-2/3 text-gray-900">株式会社〇〇〇〇</div>
+                <div className="w-full md:w-2/3 text-gray-900">株式会社Saira</div>
               </div>
               <div className="flex flex-col md:flex-row border-b border-gray-200 pb-6">
                 <div className="w-full md:w-1/3 font-medium text-gray-700">設立</div>
@@ -193,13 +193,13 @@ export default function AboutPage() {
               </div>
               <div className="flex flex-col md:flex-row border-b border-gray-200 pb-6">
                 <div className="w-full md:w-1/3 font-medium text-gray-700">代表者</div>
-                <div className="w-full md:w-2/3 text-gray-900">代表取締役CEO 山田 太郎</div>
+                <div className="w-full md:w-2/3 text-gray-900">代表取締役CEO 佐藤 遼河</div>
               </div>
               <div className="flex flex-col md:flex-row border-b border-gray-200 pb-6">
                 <div className="w-full md:w-1/3 font-medium text-gray-700">所在地</div>
                 <div className="w-full md:w-2/3 text-gray-900">
-                  〒150-0002<br />
-                  東京都渋谷区渋谷2-1-1 渋谷スクエアビル 15F
+                  〒252-0201<br />
+                  神奈川県相模原市中央区上矢部5-3
                 </div>
               </div>
               <div className="flex flex-col md:flex-row">
