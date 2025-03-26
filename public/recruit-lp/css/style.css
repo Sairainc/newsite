@@ -5771,6 +5771,8 @@ ul, ol {
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  position: relative;
+  padding-top: 15px;
 }
 
 .service__table {
@@ -5806,7 +5808,7 @@ ul, ol {
 .service__table th.highlight::after {
   content: '✓ おすすめ';
   position: absolute;
-  top: -10px;
+  top: -12px;
   left: 50%;
   transform: translateX(-50%);
   background-color: #ef4444;
@@ -5817,6 +5819,7 @@ ul, ol {
   font-weight: 600;
   white-space: nowrap;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
 
 .service__table td.highlight {
