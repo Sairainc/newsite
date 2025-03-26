@@ -5750,9 +5750,8 @@ ul, ol {
   margin-bottom: 40px;
   text-align: center;
   position: relative;
-  display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 100%;
+  display: block;
 }
 
 .service__process-title::after {
@@ -5825,9 +5824,8 @@ ul, ol {
   margin-bottom: 40px;
   text-align: center;
   position: relative;
-  display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 100%;
+  display: block;
 }
 
 .service__comparison-title::after {
