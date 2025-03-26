@@ -48,7 +48,10 @@ export default function AboutPage() {
                   src="/images/L1410380.jpg"
                   alt="代表取締役CEO 佐藤 遼河"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority
                   className="object-cover"
+                  unoptimized
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-blue-50 rounded-full -z-10"></div>
@@ -97,8 +100,7 @@ export default function AboutPage() {
             <div className="inline-block bg-blue-100 px-4 py-2 rounded-full text-blue-600 font-medium mb-4">Our Mission</div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">ミッション</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              テクノロジーの力で、地域の可能性を最大限に引き出し、<br className="hidden md:inline" />
-              誰もが活き活きと暮らせる社会を創造します。
+              AIのちからで地方を元気にする
             </p>
           </motion.div>
         </div>
@@ -213,7 +215,7 @@ export default function AboutPage() {
               </div>
               <div className="flex flex-col md:flex-row border-b border-gray-200 pb-6">
                 <div className="w-full md:w-1/3 font-medium text-gray-700">設立</div>
-                <div className="w-full md:w-2/3 text-gray-900">2020年4月</div>
+                <div className="w-full md:w-2/3 text-gray-900">2024年 10月</div>
               </div>
               <div className="flex flex-col md:flex-row border-b border-gray-200 pb-6">
                 <div className="w-full md:w-1/3 font-medium text-gray-700">代表者</div>
