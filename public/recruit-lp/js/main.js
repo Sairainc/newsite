@@ -46,17 +46,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function handleScroll() {
         // ヘッダースクロール効果
-        if (window.scrollY > headerScrollThreshold) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+        if (header) {
+            if (window.scrollY > headerScrollThreshold) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         }
 
         // スクロールトップボタンの表示制御
-        if (window.scrollY > scrollThreshold) {
-            scrollTopBtn.classList.add('visible');
-        } else {
-            scrollTopBtn.classList.remove('visible');
+        if (scrollTopBtn) {
+            if (window.scrollY > scrollThreshold) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
         }
     }
 
