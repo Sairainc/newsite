@@ -44,9 +44,11 @@ export default function AboutPage() {
           >
             <div className="relative">
               <div className="aspect-w-4 aspect-h-5 rounded-2xl overflow-hidden shadow-xl relative">
-                <img 
-                  src="/images/ceo-photo.jpg" 
-                  alt="代表取締役CEO 佐藤 遼河" 
+                <Image 
+                  src="/images/ceo-photo.jpg"
+                  alt="代表取締役CEO 佐藤 遼河"
+                  width={500}
+                  height={625}
                   className="object-cover w-full h-full"
                 />
               </div>
