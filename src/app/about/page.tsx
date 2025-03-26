@@ -45,7 +45,7 @@ export default function AboutPage() {
             <div className="relative">
               <div className="aspect-w-4 aspect-h-5 rounded-2xl overflow-hidden shadow-xl">
                 <Image
-                  src="/images/社長顔.jpg"
+                  src="/images/L1410380.jpg"
                   alt="代表取締役CEO 佐藤 遼河"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
