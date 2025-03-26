@@ -4,6 +4,8 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+// CEOの画像を直接インポート
+import CEOImage from '../../../public/images/L1410380.jpg'
 
 export default function AboutPage() {
   return (
@@ -43,15 +45,14 @@ export default function AboutPage() {
             transition={{ duration: 0.8 }}
           >
             <div className="relative">
-              <div className="aspect-w-4 aspect-h-5 rounded-2xl overflow-hidden shadow-xl">
+              <div className="aspect-w-4 aspect-h-5 rounded-2xl overflow-hidden shadow-xl relative">
                 <Image
-                  src="/images/L1410380.jpg"
+                  src={CEOImage}
                   alt="代表取締役CEO 佐藤 遼河"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
                   className="object-cover"
-                  unoptimized
+                  priority
+                  fill
+                  style={{ objectFit: "cover" }}
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-blue-50 rounded-full -z-10"></div>
