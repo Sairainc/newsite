@@ -40,7 +40,7 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* ロゴ */}
           <Link href="/" className="text-xl md:text-2xl font-bold tracking-wider text-black">
-            Company Logo
+            Saira
           </Link>
 
           {/* メインナビゲーション - コンテナを右揃えに */}
@@ -48,8 +48,8 @@ export default function Navigation() {
             <div className="flex items-center space-x-8 lg:space-x-10">
               <Link 
                 href="/about" 
-                className={`text-black hover:text-black relative py-2 group ${
-                  pathname === '/about' ? 'font-medium' : ''
+                className={`text-black hover:text-black relative py-2 group font-bold ${
+                  pathname === '/about' ? 'font-bold' : ''
                 }`}
               >
                 私たちについて
@@ -57,8 +57,8 @@ export default function Navigation() {
               </Link>
               <Link 
                 href="/services" 
-                className={`text-black hover:text-black relative py-2 group ${
-                  pathname === '/services' ? 'font-medium' : ''
+                className={`text-black hover:text-black relative py-2 group font-bold ${
+                  pathname === '/services' ? 'font-bold' : ''
                 }`}
               >
                 事業・サービス
@@ -66,8 +66,8 @@ export default function Navigation() {
               </Link>
               <Link 
                 href="/news" 
-                className={`text-black hover:text-black relative py-2 group ${
-                  pathname === '/news' ? 'font-medium' : ''
+                className={`text-black hover:text-black relative py-2 group font-bold ${
+                  pathname === '/news' ? 'font-bold' : ''
                 }`}
               >
                 ニュース
@@ -121,7 +121,7 @@ export default function Navigation() {
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white rounded-b-lg shadow-lg">
               <Link 
                 href="/about" 
-                className={`block px-3 py-2 text-base font-medium text-black hover:bg-blue-50 rounded-md ${
+                className={`block px-3 py-2 text-base font-bold text-black hover:bg-blue-50 rounded-md ${
                   pathname === '/about' ? 'border-l-4 border-blue-600 pl-2' : ''
                 }`}
                 onClick={() => setIsMenuOpen(false)}
@@ -130,7 +130,7 @@ export default function Navigation() {
               </Link>
               <Link 
                 href="/services" 
-                className={`block px-3 py-2 text-base font-medium text-black hover:bg-blue-50 rounded-md ${
+                className={`block px-3 py-2 text-base font-bold text-black hover:bg-blue-50 rounded-md ${
                   pathname === '/services' ? 'border-l-4 border-blue-600 pl-2' : ''
                 }`}
                 onClick={() => setIsMenuOpen(false)}
@@ -139,7 +139,7 @@ export default function Navigation() {
               </Link>
               <Link 
                 href="/news" 
-                className={`block px-3 py-2 text-base font-medium text-black hover:bg-blue-50 rounded-md ${
+                className={`block px-3 py-2 text-base font-bold text-black hover:bg-blue-50 rounded-md ${
                   pathname === '/news' ? 'border-l-4 border-blue-600 pl-2' : ''
                 }`}
                 onClick={() => setIsMenuOpen(false)}
