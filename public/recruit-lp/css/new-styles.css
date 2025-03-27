@@ -1174,8 +1174,8 @@
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     margin-bottom: 2rem;
-    height: 400px;
-    flex: 0 0 40%;
+    height: 640px;
+    flex: 0 0 36%;
 }
 
 .case__story-image img {
@@ -1337,7 +1337,7 @@
     }
     
     .case__story-image {
-        flex: 0 0 400px;
+        flex: 0 0 600px;
         margin-bottom: 1rem;
     }
 }
