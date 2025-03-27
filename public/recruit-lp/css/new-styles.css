@@ -2594,3 +2594,388 @@
         align-items: center;
     }
 }
+
+/* 採用市場の課題セクション */
+.problems {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1e293b, #334155);
+    color: #fff;
+}
+
+.problems::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/dark-texture.jpg');
+    background-size: cover;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+.problems .container {
+    position: relative;
+    z-index: 2;
+}
+
+.problems .section__title,
+.problems .section__subtitle {
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.problems__intro {
+    margin-bottom: 3.5rem;
+    text-align: center;
+}
+
+.problems__heading {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 2.5rem;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.problems__heading .accent-text {
+    color: #ff6b6b;
+    font-weight: 800;
+    position: relative;
+    text-shadow: 0 2px 4px rgba(255, 107, 107, 0.3);
+}
+
+.problems__stats {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.problems__stat {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 1.8rem 1.5rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1;
+    max-width: 280px;
+}
+
+.problems__stat:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.3), 0 15px 15px -5px rgba(0, 0, 0, 0.15);
+}
+
+.problems__stat-number {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.problems__stat-number small {
+    font-size: 1.8rem;
+    font-weight: 700;
+    opacity: 0.9;
+}
+
+.problems__stat-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.problems__cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.problem-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    text-align: left;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.problem-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 7px;
+    background: linear-gradient(to right, #ff6b6b, #ff8e8e);
+}
+
+.problem-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 30px 35px -10px rgba(0, 0, 0, 0.3), 0 15px 15px -5px rgba(0, 0, 0, 0.15);
+}
+
+.problem-card__icon {
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+    color: #ff6b6b;
+    text-shadow: 0 2px 10px rgba(255, 107, 107, 0.5);
+}
+
+.problem-card__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.problem-card__text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.problems__solution {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 3rem;
+    margin-bottom: 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+}
+
+.problems__solution-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    padding-bottom: 1rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.problems__solution-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(to right, #ff6b6b, #ff8e8e);
+    transform: translateX(-50%);
+}
+
+.problems__solution-content {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+
+.problems__solution-image {
+    flex: 0 0 35%;
+    position: relative;
+}
+
+.problems__solution-image img {
+    border-radius: 12px;
+    width: 100%;
+    height: auto;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.problems__solution-image:hover img {
+    transform: scale(1.02);
+}
+
+.problems__solution-text {
+    flex: 1;
+}
+
+.problems__solution-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.problems__solution-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.2rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.problems__solution-list li:last-child {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.2rem;
+}
+
+.problems__solution-list li .material-icons {
+    color: #ff6b6b;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+}
+
+.problems__solution-list li strong {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    color: #fff;
+}
+
+.problems__solution-note {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-top: 2rem;
+    padding: 1.2rem 1.5rem;
+    background: rgba(255, 107, 107, 0.15);
+    border-radius: 10px;
+    border-left: 4px solid #ff6b6b;
+    text-align: center;
+}
+
+.problems__solution-note .accent-text {
+    color: #ff6b6b;
+    font-weight: 700;
+}
+
+.problems__cta {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.problems__cta .btn {
+    background: linear-gradient(to right, #ff6b6b, #ff8e8e);
+    border: none;
+    box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.problems__cta .btn:hover {
+    background: linear-gradient(to right, #ff8e8e, #ff6b6b);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(255, 107, 107, 0.4);
+}
+
+@media (max-width: 992px) {
+    .problems__stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    
+    .problems__stat {
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .problems__solution-content {
+        flex-direction: column;
+    }
+    
+    .problems__solution-image {
+        flex: 0 0 100%;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .problems__heading {
+        font-size: 1.8rem;
+    }
+    
+    .problems__stats {
+        gap: 1rem;
+    }
+    
+    .problems__stat {
+        padding: 1.5rem;
+    }
+    
+    .problems__stat-number {
+        font-size: 2.5rem;
+    }
+    
+    .problems__stat-number small {
+        font-size: 1.5rem;
+    }
+    
+    .problems__cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .problems__solution {
+        padding: 2rem 1.5rem;
+    }
+    
+    .problems__solution-title {
+        font-size: 1.5rem;
+    }
+    
+    .problems__solution-list li {
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .problems__heading {
+        font-size: 1.6rem;
+    }
+    
+    .problems__stat {
+        padding: 1.2rem;
+    }
+    
+    .problems__stat-number {
+        font-size: 2.2rem;
+    }
+    
+    .problems__stat-text {
+        font-size: 0.9rem;
+    }
+    
+    .problem-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .problem-card__title {
+        font-size: 1.3rem;
+    }
+    
+    .problem-card__text {
+        font-size: 0.9rem;
+    }
+    
+    .problems__solution-note {
+        font-size: 1rem;
+    }
+}
