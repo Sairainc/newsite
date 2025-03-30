@@ -392,7 +392,7 @@
                 <div class="hero__trust-badges" data-aos="fade-in" data-aos-delay="1200">
                     <div class="hero__trust-badge">
                         <span class="hero__trust-icon"><span class="material-icons">verified</span></span>
-                        <span class="hero__trust-text">3営業日以内<br>納品保証</span>
+                        <span class="hero__trust-text">5営業日以内<br>納品保証</span>
                     </div>
                     <div class="hero__trust-badge">
                         <span class="hero__trust-icon"><span class="material-icons">verified</span></span>
@@ -407,8 +407,7 @@
             
             <div class="hero__image" data-aos="fade-in" data-aos-delay="400">
                 <div class="hero__image-container">
-                    <img src="/recruit-lp/img/imagew.png" alt="採用LPのイメージ" width="500" height="350" loading="eager" style="width: 100%; height: 100%; object-fit: cover;">
-                    <div class="hero__image-overlay"></div>
+                    <img src="/recruit-lp/img/imagew.png" alt="採用LPのイメージ" width="500" height="350" loading="eager" style="width: auto; height: auto; max-width: 100%; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); border-radius: 10px;">
                 </div>
             </div>
         </div>
@@ -418,6 +417,238 @@
             <span class="material-icons">keyboard_arrow_down</span>
         </a>
     </section>
+
+    <style>
+        /* ヒーローセクションの改善スタイル */
+        .hero {
+            position: relative;
+            padding: 6rem 0 4rem;
+            background-color: #f8fafc;
+            overflow: hidden;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/recruit-lp/img/pattern.svg');
+            background-size: cover;
+            opacity: 0.03;
+            z-index: 0;
+        }
+        
+        .hero .container {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .hero__badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(37, 99, 235, 0.1);
+            color: #2563eb;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .hero__badge .material-icons {
+            font-size: 1.1rem;
+            margin-right: 0.5rem;
+        }
+        
+        .hero__title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: #1e293b;
+        }
+        
+        .hero__title .accent-text {
+            color: #2563eb;
+            display: block;
+        }
+        
+        .hero__subtitle {
+            font-size: 1.2rem;
+            color: #475569;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .hero__subtitle strong {
+            font-weight: 700;
+            color: #2563eb;
+        }
+        
+        .hero__buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .btn--outline-light {
+            border: 2px solid #2563eb;
+            color: #2563eb;
+            background-color: transparent;
+        }
+        
+        .btn--outline-light:hover {
+            background-color: rgba(37, 99, 235, 0.1);
+        }
+        
+        .btn--xlarge {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .hero__trust-badges {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .hero__trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .hero__trust-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+        }
+        
+        .hero__trust-icon .material-icons {
+            color: #2563eb;
+            font-size: 1.2rem;
+        }
+        
+        .hero__trust-text {
+            font-size: 0.8rem;
+            font-weight: 600;
+            line-height: 1.3;
+            color: #475569;
+        }
+        
+        .hero__image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero__image-container img {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero__scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #64748b;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .hero__scroll:hover {
+            color: #2563eb;
+            transform: translateX(-50%) translateY(5px);
+        }
+        
+        .hero__scroll .material-icons {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero__content {
+                order: 1;
+            }
+            
+            .hero__image {
+                order: 0;
+                margin-bottom: 2rem;
+            }
+            
+            .hero__title {
+                font-size: 2.5rem;
+            }
+            
+            .hero__buttons {
+                justify-content: center;
+            }
+            
+            .hero__trust-badges {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 4rem 0 3rem;
+            }
+            
+            .hero__title {
+                font-size: 2rem;
+            }
+            
+            .hero__subtitle {
+                font-size: 1rem;
+            }
+            
+            .hero__buttons {
+                flex-direction: column;
+            }
+            
+            .hero__trust-badges {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+    </style>
 
     <!-- 社会的証明 -->
     <section id="social-proof" class="social-proof section">
@@ -485,7 +716,7 @@
                         <span class="material-icons">schedule</span>
                     </div>
                     <h3 class="card__title">超速納品</h3>
-                    <p class="card__text">最短3営業日での納品が可能。急ぎの採用ニーズにも柔軟に対応し、競争優位性を確保します。</p>
+                    <p class="card__text">最短5営業日での納品が可能。急ぎの採用ニーズにも柔軟に対応し、競争優位性を確保します。</p>
                 </div>
             </div>
             
@@ -836,8 +1067,7 @@
                 <div class="problems__solution-content">
                     <div class="problems__solution-image">
                         <div class="hero__image-container">
-                            <img src="/recruit-lp/img/imagew.png" alt="採用LPの効果イメージ" width="450" height="300" style="width: 100%; height: 100%; object-fit: cover;">
-                            <div class="hero__image-overlay"></div>
+                            <img src="/recruit-lp/img/imagew.png" alt="採用LPの効果イメージ" width="450" height="300" style="width: auto; height: auto; max-width: 100%;">
                         </div>
                     </div>
                     <div class="problems__solution-text">
@@ -942,9 +1172,9 @@
                         <div class="service__feature-icon">
                             <span class="material-icons">speed</span>
                         </div>
-                        <h4 class="service__feature-title">超高速納品<br>3営業日以内</h4>
+                        <h4 class="service__feature-title">超高速納品<br>5営業日以内</h4>
                         <p class="service__feature-text">
-                            ヒアリング後から3営業日以内に納品。採用活動の即時開始を実現し、採用機会の損失を最小限に抑えます。
+                            ヒアリング後から5営業日以内に納品。採用活動の即時開始を実現し、採用機会の損失を最小限に抑えます。
                         </p>
                     </div>
                     
@@ -1044,7 +1274,7 @@
                             </tr>
                             <tr>
                                 <td>制作スピード</td>
-                                <td class="highlight">◎（3営業日）</td>
+                                <td class="highlight">◎（5営業日）</td>
                                 <td>△（2〜4週間）</td>
                                 <td>×（LP制作なし）</td>
                             </tr>
@@ -1103,7 +1333,7 @@
                             <span>¥50,000</span>
                             <small>税込</small>
                         </div>
-                        <p class="price__plan-subtitle">高品質な採用LPを最短3営業日で制作</p>
+                        <p class="price__plan-subtitle">高品質な採用LPを最短5営業日で制作</p>
                     </div>
                     <div class="price__plan-body">
                         <ul class="price__plan-features">
@@ -1133,7 +1363,7 @@
                             </li>
                             <li>
                                 <span class="material-icons">check_circle</span>
-                                最短3営業日納品
+                                最短5営業日納品
                             </li>
                             <li>
                                 <span class="material-icons">check_circle</span>
@@ -1193,13 +1423,7 @@
                         <span class="material-icons">edit</span>
                     </div>
                     <h4 class="contact__option-title">WEBフォームでのお問い合わせ</h4>
-                    <p class="contact__option-text">下記フォームに必要事項を入力し、送信してください。<br>3営業日以内に担当者よりご連絡いたします。</p>
-                </div>
-                <div class="contact__option" data-aos="fade-up" data-aos-delay="400">
-                    <div class="contact__option-icon">
-                        <span class="material-icons">phone</span>
-                    </div>
-
+                    <p class="contact__option-text">下記フォームに必要事項を入力し、送信してください。<br>5営業日以内に担当者よりご連絡いたします。</p>
                 </div>
             </div>
             
@@ -1323,7 +1547,7 @@
                                 <span class="material-icons">call</span>
                             </div>
                             <h4 class="contact__step-title">ご連絡</h4>
-                            <p class="contact__step-text">3営業日以内に担当者よりご連絡</p>
+                            <p class="contact__step-text">5営業日以内に担当者よりご連絡</p>
                         </div>
                     </div>
                     <div class="contact__step">
@@ -1396,7 +1620,7 @@
                     </div>
                     <div class="faq__answer">
                         <p class="faq__answer-text">
-                            スタンダードプランの場合、ヒアリング後から最短3営業日以内に納品いたします。プレミアムプラン以上は、動画撮影や追加コンテンツの制作が必要なため、別途納期をご相談させていただきます。緊急の採用活動が必要な場合でも、可能な限り対応させていただきます。
+                            スタンダードプランの場合、ヒアリング後から最短5営業日以内に納品いたします。プレミアムプラン以上は、動画撮影や追加コンテンツの制作が必要なため、別途納期をご相談させていただきます。緊急の採用活動が必要な場合でも、可能な限り対応させていただきます。
                         </p>
                     </div>
                 </div>
