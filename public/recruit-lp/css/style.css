@@ -715,11 +715,12 @@ ul, ol {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, 
-        rgba(var(--color-dark-rgb), 0) 50%, 
-        rgba(var(--color-dark-rgb), 0.8) 100%);
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(37, 99, 235, 0.2));
+    border-radius: var(--border-radius-lg);
+    pointer-events: none;
+    z-index: 1;
 }
 
 .hero__success-case {
