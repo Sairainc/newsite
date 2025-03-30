@@ -2030,7 +2030,7 @@ ul, ol {
 .problems__solution-content {
     display: flex;
     gap: 2rem;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .problems__solution-image {
@@ -2046,6 +2046,7 @@ ul, ol {
     height: auto;
     display: block;
     transition: transform 0.5s ease;
+    object-fit: cover;
 }
 
 .problems__solution-image:hover img {
@@ -2088,6 +2089,7 @@ ul, ol {
 @media (max-width: 992px) {
     .problems__solution-content {
         flex-direction: column;
+        align-items: center;
     }
     
     .problems__solution-image {
