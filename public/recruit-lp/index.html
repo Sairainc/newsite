@@ -710,28 +710,15 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            perspective: 1000px;
         }
         
         .hero__image-container img {
             position: relative;
             z-index: 2;
-            transform: translateZ(0);
-            transition: all 0.5s ease;
             box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             max-width: 520px;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) translateZ(0);
-            }
-            50% {
-                transform: translateY(-15px) translateZ(20px);
-            }
         }
         
         .hero__scroll {
