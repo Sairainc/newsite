@@ -421,21 +421,18 @@
                 </div>
             </div>
             
-            <div class="hero__image" data-aos="fade-in" data-aos-delay="400">
-                <div class="hero__image-container">
-                    <div class="hero__image-grid">
-                        <img src="/recruit-lp/img/ImageFX (8).jpg" alt="Hero Image 1" style="max-width: 80%; height: auto; border-radius: 8px; margin: 1rem auto;">
-                        <img src="/recruit-lp/img/Canva ホーム画像.png" alt="Hero Image 2" style="max-width: 80%; height: auto; border-radius: 8px; margin: 1rem auto;">
-                        <img src="/recruit-lp/img/imagefx2.jpg" alt="Hero Image 3" style="max-width: 80%; height: auto; border-radius: 8px; margin: 1rem auto;">
-                    </div>
-                </div>
+            <!-- hero__image-gridをhero__contentの兄弟要素としてここに移動 -->
+            <div class="hero__image-grid" data-aos="fade-in" data-aos-delay="400">
+                <img src="/recruit-lp/img/ImageFX (8).jpg" alt="Hero Image 1" style="max-width: 80%; height: auto; border-radius: 8px; margin: 1rem auto;">
+                <img src="/recruit-lp/img/Canva ホーム画像.png" alt="Hero Image 2" style="max-width: 80%; height: auto; border-radius: 8px; margin: 1rem auto;">
+                <img src="/recruit-lp/img/imagefx2.jpg" alt="Hero Image 3" style="max-width: 80%; height: auto; border-radius: 8px; margin: 1rem auto;">
             </div>
+
+            <a href="#service" class="hero__scroll" data-aos="fade-in" data-aos-delay="1600">
+                <span>詳しく見る</span>
+                <span class="material-icons">keyboard_arrow_down</span>
+            </a>
         </div>
-        
-        <a href="#service" class="hero__scroll" data-aos="fade-in" data-aos-delay="1600">
-            <span>詳しく見る</span>
-            <span class="material-icons">keyboard_arrow_down</span>
-        </a>
     </section>
 
     <style>
@@ -686,10 +683,15 @@
             color: #334155;
         }
         
+        /* .hero__image ルールブロック全体を削除 */
+        /*
         .hero__image {
             position: relative;
         }
+        */
         
+        /* .hero__image::before ルールブロック全体を削除 */
+        /*
         .hero__image::before {
             content: '';
             position: absolute;
@@ -702,7 +704,10 @@
             z-index: 1;
             filter: blur(30px);
         }
+        */
         
+        /* .hero__image-container ルールブロック全体を削除 */
+        /*
         .hero__image-container {
             position: relative;
             width: 100%;
@@ -711,7 +716,10 @@
             justify-content: center;
             align-items: center;
         }
+        */
         
+        /* .hero__image-container img ルールブロック全体を削除 */
+        /*
         .hero__image-container img {
             position: relative;
             z-index: 2;
@@ -720,6 +728,7 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             max-width: 520px;
         }
+        */
         
         .hero__scroll {
             position: absolute;
@@ -781,10 +790,13 @@
                 order: 1;
             }
             
+            /* メディアクエリ内の .hero__image ルールを削除 */
+            /*
             .hero__image {
                 order: 0;
                 margin-bottom: 1rem;
             }
+            */
             
             .hero__title {
                 font-size: 3rem;
@@ -833,9 +845,12 @@
                 gap: 1.5rem;
             }
             
+            /* メディアクエリ内の .hero__image-container img ルールを削除 */
+            /*
             .hero__image-container img {
                 max-width: 90%;
             }
+            */
         }
         
         .hero__image-grid {
@@ -1327,9 +1342,12 @@
             <div class="problems__solution" style="background-color: #f8fafc; border-radius: 1rem; padding: 3rem 3rem 5rem; margin-bottom: 4rem; border: 2px solid #e2e8f0;">
                 <h3 class="problems__solution-title">なぜ専門的な採用LPが必要なのか？</h3>
                 <div class="problems__solution-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
-                    <div class="problems__solution-image" style="border-radius: 0.5rem; overflow: hidden; max-width: 100%; height: auto; margin-bottom: 1rem;">
-                        <div class="hero__image-container" style="height: auto; max-height: none; padding-bottom: 1rem;">
-                            <img src="/recruit-lp/img/imagew.png" alt="採用LPの効果イメージ" style="width: 100%; height: auto; max-width: 100%; object-fit: contain; box-sizing: border-box; max-height: none;">
+                    <!-- インラインスタイルを削除 -->
+                    <div class="problems__solution-image">
+                        <!-- インラインスタイルを削除 -->
+                        <div class="hero__image-container">
+                            <!-- インラインスタイルを削除 -->
+                            <img src="/recruit-lp/img/imagew.png" alt="採用LPの効果イメージ">
                         </div>
                     </div>
                     <div class="problems__solution-text">
