@@ -350,6 +350,22 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- 追加のスタイル -->
+    <style>
+      @media (max-width: 992px) {    
+        .problems__solution-content {
+          grid-template-columns: 1fr !important;
+          gap: 2rem !important;
+        }
+        
+        .problems__solution-image {
+          margin: 0 auto !important;
+          max-width: 450px !important;
+        }
+      }
+    </style>
+    
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -1244,12 +1260,12 @@
                 </div>
             </div>
 
-            <div class="problems__solution">
+            <div class="problems__solution" style="background-color: #f8fafc; border-radius: 1rem; padding: 3rem 3rem 5rem; margin-bottom: 4rem; border: 2px solid #e2e8f0;">
                 <h3 class="problems__solution-title">なぜ専門的な採用LPが必要なのか？</h3>
-                <div class="problems__solution-content">
-                    <div class="problems__solution-image">
-                        <div class="hero__image-container" style="height: auto;">
-                            <img src="/recruit-lp/img/imagew.png" alt="採用LPの効果イメージ" width="450" height="auto" style="width: auto; height: auto; max-width: 100%; object-fit: contain;">
+                <div class="problems__solution-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+                    <div class="problems__solution-image" style="border-radius: 0.5rem; overflow: hidden; max-width: 100%; height: auto; margin-bottom: 1rem;">
+                        <div class="hero__image-container" style="height: auto; max-height: none; padding-bottom: 1rem;">
+                            <img src="/recruit-lp/img/imagew.png" alt="採用LPの効果イメージ" style="width: 100%; height: auto; max-width: 100%; object-fit: contain; box-sizing: border-box; max-height: none;">
                         </div>
                     </div>
                     <div class="problems__solution-text">
