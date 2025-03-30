@@ -513,8 +513,8 @@ ul, ol {
     min-height: 100vh;
     padding: 8rem 0 4rem;
     overflow: hidden;
-    background: linear-gradient(135deg, var(--color-dark) 0%, #2a3c5a 100%);
-    color: var(--color-white);
+    background-color: #f8fafc;
+    color: var(--color-dark);
     display: flex;
     align-items: center;
 }
