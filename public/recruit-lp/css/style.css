@@ -1918,91 +1918,182 @@ ul, ol {
 /* ===== クライアントの課題提起セクション ===== */
 .problems__intro {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 4rem; /* 少し間隔を調整 */
 }
 
-.problems__lead {
-    font-size: 2rem;
+.problems__heading {
+    font-size: 2.2rem; /* 少し調整 */
     font-weight: 700;
-    margin-bottom: 40px;
+    margin-bottom: 2rem; /* 間隔調整 */
     color: var(--color-dark);
     line-height: 1.4;
 }
 
-.problems__stats {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    margin-top: 40px;
-}
-
-.problems__stat-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.problems__stat-number {
-    font-family: var(--font-heading);
-    font-size: 3.5rem;
-    font-weight: 700;
+.problems__heading .accent-text {
     color: var(--color-primary);
-    line-height: 1;
-    margin-bottom: 15px;
     position: relative;
+    padding-bottom: 0.5rem;
 }
 
-.problems__stat-number small {
-    font-size: 1.4rem;
-    position: relative;
-    top: -10px;
+.problems__heading .accent-text::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary-light), var(--color-accent-purple));
+    border-radius: 2px;
 }
 
-.problems__stat-label {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: var(--color-gray-dark);
+.problems__stats {
+    display: grid; /* Gridに変更してレスポンシブ対応しやすく */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 列を自動調整 */
+    gap: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 5rem; /* カードとの間隔 */
 }
 
-.problems__cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin-bottom: 70px;
-}
-
-.problem-card {
-    background-color: var(--color-light);
-    border-radius: var(--radius-md);
-    padding: 30px;
-    box-shadow: var(--shadow-md);
+.problems__stat {
+    background: linear-gradient(145deg, var(--color-white), #f9fafb);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem 1.5rem;
     text-align: center;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+}
+
+.problems__stat::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(var(--color-primary-rgb), 0.1) 0%, rgba(var(--color-primary-rgb), 0) 70%);
+    border-radius: 50%;
     transition: var(--transition);
 }
 
-.problem-card:hover {
+.problems__stat:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
 }
 
+.problems__stat:hover::before {
+    transform: scale(1.2);
+    opacity: 0.8;
+}
+
+.problems__stat-number {
+    font-family: var(--font-heading);
+    font-size: 4rem; /* 数字を大きく */
+    font-weight: 800; /* 太く */
+    color: var(--color-primary);
+    line-height: 1;
+    margin-bottom: 0.8rem;
+    position: relative;
+    z-index: 1;
+}
+
+.problems__stat-number small {
+    font-size: 1.8rem; /* 単位も少し大きく */
+    font-weight: 600;
+    position: relative;
+    top: -0.5em;
+    margin-left: 0.1em;
+}
+
+.problems__stat-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--color-gray-dark);
+    position: relative;
+    z-index: 1;
+}
+
+.problems__cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* レスポンシブ対応 */
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.problem-card {
+    background: linear-gradient(135deg, var(--color-white) 0%, #f7faff 100%);
+    border-radius: var(--border-radius-lg); /* 角を丸く */
+    padding: 2.5rem 2rem; /* パディング調整 */
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+    text-align: left; /* テキスト左寄せ */
+    transition: var(--transition-slow);
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.problem-card::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(var(--color-primary-rgb), 0.08) 0%, rgba(var(--color-primary-rgb), 0) 60%);
+    border-radius: 50%;
+    transition: var(--transition-slow);
+    opacity: 0;
+}
+
+.problem-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(var(--color-primary-rgb), 0.2);
+}
+
+.problem-card:hover::after {
+    transform: scale(1.3);
+    opacity: 1;
+}
+
 .problem-card__icon {
     font-size: 2.5rem;
-    color: var(--color-accent);
-    margin-bottom: 20px;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.1), rgba(var(--color-primary-rgb), 0.15));
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    transition: var(--transition);
+}
+
+.problem-card:hover .problem-card__icon {
+    background: var(--color-primary);
+    color: var(--color-white);
+    transform: rotate(-15deg) scale(1.1);
 }
 
 .problem-card__title {
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 15px;
+    font-size: 1.4rem; /* 少し大きく */
+    font-weight: 700; /* 太く */
+    margin-bottom: 0.8rem;
     color: var(--color-dark);
+    position: relative;
+    z-index: 1;
 }
 
-.problem-card__content {
-    font-size: 1rem;
+.problem-card__text {
+    font-size: 0.95rem; /* 少し小さく調整 */
     color: var(--color-gray-dark);
-    line-height: 1.6;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
 }
 
 .problems__solution {
@@ -2026,7 +2117,7 @@ ul, ol {
     width: 450px;
     flex-shrink: 0;
     position: relative;
-    height: 300px;
+    height: auto;
 }
 
 .problems__solution-image .hero__image-container {
@@ -2037,9 +2128,9 @@ ul, ol {
 
 .problems__solution-image img {
     width: 100%;
-    height: 100%;
+    height: auto;
     display: block;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
     transition: transform 0.5s ease;
 }
