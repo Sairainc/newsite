@@ -2036,17 +2036,20 @@ ul, ol {
 .problems__solution-image {
     width: 450px;
     flex-shrink: 0;
-    overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.problems__solution-image .hero__image-container {
+    width: 100%;
+    height: 100%;
 }
 
 .problems__solution-image img {
     width: 100%;
     height: auto;
     display: block;
-    transition: transform 0.5s ease;
     object-fit: cover;
+    transition: transform 0.5s ease;
 }
 
 .problems__solution-image:hover img {
