@@ -423,7 +423,58 @@
             
             <div class="hero__image" data-aos="fade-in" data-aos-delay="400">
                 <div class="hero__image-container">
-                    <img src="/recruit-lp/img/imagew.png" alt="採用LPのイメージ" width="500" height="350" loading="eager" style="width: auto; height: auto; max-width: 100%; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+                    <div class="hero__image-grid">
+                        <div class="hero__image-main">
+                            <img src="/recruit-lp/img/imagew.png" alt="採用LPのイメージ" loading="eager" class="hero__main-img">
+                        </div>
+                        <div class="hero__employees">
+                            <div class="hero__employee-card">
+                                <div class="hero__employee-image">
+                                    <img src="/recruit-lp/img/ビジネス女性のイラスト.png" alt="採用事例1" loading="eager">
+                                </div>
+                                <div class="hero__employee-info">
+                                    <span class="hero__employee-position">マーケティング</span>
+                                    <span class="hero__employee-result">入社1年</span>
+                                </div>
+                            </div>
+                            <div class="hero__employee-card">
+                                <div class="hero__employee-image">
+                                    <img src="/recruit-lp/img/男性作業員 イラスト.png" alt="採用事例2" loading="eager">
+                                </div>
+                                <div class="hero__employee-info">
+                                    <span class="hero__employee-position">エンジニア</span>
+                                    <span class="hero__employee-result">入社3ヶ月</span>
+                                </div>
+                            </div>
+                            <div class="hero__employee-card">
+                                <div class="hero__employee-image">
+                                    <img src="/recruit-lp/img/工場 男性作業員 イラスト.png" alt="採用事例3" loading="eager">
+                                </div>
+                                <div class="hero__employee-info">
+                                    <span class="hero__employee-position">技術職</span>
+                                    <span class="hero__employee-result">入社6ヶ月</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero__stats" data-aos="fade-up" data-aos-delay="1000">
+                            <div class="hero__stat">
+                                <div class="hero__stat-number">85<small>%</small></div>
+                                <div class="hero__stat-label">応募率向上</div>
+                            </div>
+                            <div class="hero__stat">
+                                <div class="hero__stat-number">67<small>%</small></div>
+                                <div class="hero__stat-label">採用コスト削減</div>
+                            </div>
+                            <div class="hero__stat">
+                                <div class="hero__stat-number">92<small>%</small></div>
+                                <div class="hero__stat-label">ミスマッチ解消</div>
+                            </div>
+                            <div class="hero__stat">
+                                <div class="hero__stat-number">100<small>+</small></div>
+                                <div class="hero__stat-label">企業実績</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -844,6 +895,223 @@
             
             .hero__image-container img {
                 max-width: 90%;
+            }
+        }
+        
+        .hero__image-grid {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .hero__image-main {
+            position: relative;
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .hero__main-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transform: translateZ(0);
+            transition: all 0.5s ease;
+            max-width: 100%;
+            border-radius: 16px;
+        }
+        
+        .hero__employees {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            width: 100%;
+        }
+        
+        .hero__employee-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .hero__employee-card:nth-child(1) {
+            animation-delay: 0.3s;
+        }
+        
+        .hero__employee-card:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        
+        .hero__employee-card:nth-child(3) {
+            animation-delay: 0.7s;
+        }
+        
+        .hero__employee-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(15, 23, 42, 0.15);
+        }
+        
+        .hero__employee-image {
+            width: 100%;
+            height: 120px;
+            overflow: hidden;
+        }
+        
+        .hero__employee-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .hero__employee-card:hover .hero__employee-image img {
+            transform: scale(1.05);
+        }
+        
+        .hero__employee-info {
+            padding: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .hero__employee-position {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 0.9rem;
+        }
+        
+        .hero__employee-result {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        
+        .hero__stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .hero__stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0.5rem;
+            flex: 1;
+        }
+        
+        .hero__stat:not(:last-child) {
+            border-right: 1px solid rgba(203, 213, 225, 0.5);
+        }
+        
+        .hero__stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+            margin-bottom: 0.25rem;
+            background: linear-gradient(135deg, #2563eb, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero__stat-label {
+            font-size: 0.75rem;
+            color: #334155;
+            font-weight: 500;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero__employees {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .hero__stats {
+                flex-wrap: wrap;
+            }
+            
+            .hero__stat {
+                width: 50%;
+                border-right: none !important;
+                border-bottom: 1px solid rgba(203, 213, 225, 0.5);
+                padding: 0.75rem;
+            }
+            
+            .hero__stat:nth-last-child(-n+2) {
+                border-bottom: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero__employees {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .hero__employee-image {
+                height: 100px;
+            }
+            
+            .hero__employee-info {
+                padding: 0.6rem;
+            }
+            
+            .hero__employee-position {
+                font-size: 0.8rem;
+            }
+            
+            .hero__employee-result {
+                font-size: 0.7rem;
+            }
+            
+            .hero__stat-number {
+                font-size: 1.25rem;
+            }
+            
+            .hero__stat-label {
+                font-size: 0.7rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero__employees {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .hero__stats {
+                margin-top: 1rem;
+            }
+            
+            .hero__stat {
+                width: 50%;
+                flex: none;
             }
         }
     </style>
