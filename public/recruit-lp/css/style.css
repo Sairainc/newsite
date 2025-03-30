@@ -5901,12 +5901,13 @@ ul, ol {
 .service__table th.highlight {
   background: linear-gradient(135deg, var(--color-primary), #3b5de7);
   color: #ffffff;
-  font-size: 1.1rem;
+  font-size: 1.15rem; /* 少し大きく */
+  font-weight: 700; /* 太字を確実に */
   letter-spacing: 0.5px;
   box-shadow: 0 4px 8px rgba(37, 99, 235, 0.2);
   position: relative;
   border-radius: 4px 4px 0 0;
-  padding: 18px 15px;
+  padding: 20px 15px; /* パディング調整 */
 }
 
 .service__table th.highlight::after {
@@ -5928,11 +5929,14 @@ ul, ol {
 
 .service__table td.highlight {
   position: relative;
-  background: rgba(37, 99, 235, 0.08);
-  font-weight: 700;
+  background: rgba(37, 99, 235, 0.1); /* 背景を少し濃く */
+  font-weight: 600; /* 他より少し太く */
+  font-size: 1.05rem; /* 少し大きく */
   color: var(--color-primary-dark);
   border-left: 1px solid rgba(37, 99, 235, 0.2);
   border-right: 1px solid rgba(37, 99, 235, 0.2);
+  padding-top: 18px; /* パディング調整 */
+  padding-bottom: 18px; /* パディング調整 */
 }
 
 .service__table tr:last-child td.highlight {
