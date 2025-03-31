@@ -1701,7 +1701,7 @@
                 <div class="form__header">
                     <span class="material-icons">security</span>
                     <h4>安全なフォーム送信</h4>
-                    <p>情報は暗号化されて送信され、個人情報保護方針に基づき適切に管理されます</p>
+                    <p>情報は暗号化されて送信され、<a href="https://www.sairainc.com/privacy-policy" target="_blank" class="form__link">個人情報保護方針</a>に基づき適切に管理されます</p>
                 </div>
                 
                 <div class="form__row">
@@ -1771,23 +1771,16 @@
                 </div>
                 
                 <div class="form__privacy">
+                    <p>下記に同意の上、送信してください。</p>
                     <div class="form__group form__group--checkbox">
                         <div class="form__checkbox-container">
                             <input type="checkbox" id="privacy" name="privacy" class="form__checkbox" required>
                             <label for="privacy" class="form__checkbox-label">
-                                <a href="#" target="_blank" class="form__link">個人情報保護方針</a>に同意します
+                                <a href="https://www.sairainc.com/privacy-policy" target="_blank" class="form__link">個人情報保護方針</a>に同意します
                             </label>
                         </div>
                     </div>
-                    
-                    <div class="form__group form__group--checkbox">
-                        <div class="form__checkbox-container">
-                            <input type="checkbox" id="newsletter" name="newsletter" class="form__checkbox">
-                            <label for="newsletter" class="form__checkbox-label">
-                                採用マーケティングに関する最新情報を受け取る
-                            </label>
-                        </div>
-                    </div>
+                    <!-- 採用マーケティング情報チェックボックスを削除 -->
                 </div>
                 
                 <div class="form__submit">
@@ -1817,7 +1810,7 @@
                                 <span class="material-icons">call</span>
                             </div>
                             <h4 class="contact__step-title">ご連絡</h4>
-                            <p class="contact__step-text">5営業日以内に担当者よりご連絡</p>
+                            <p class="contact__step-text">2営業日以内に担当者よりご連絡</p>
                         </div>
                     </div>
                     <div class="contact__step">
@@ -1844,18 +1837,12 @@
             </div>
             
             <div class="contact__trust">
-                <div class="contact__trust-item" data-aos="fade-up" data-aos-delay="700">
-                    <span class="material-icons">verified_user</span>
-                    <p>情報セキュリティ<br>対策実施企業</p>
-                </div>
-                <div class="contact__trust-item" data-aos="fade-up" data-aos-delay="800">
+                <!-- 情報セキュリティ対策実施企業（削除） -->
+                <div class="contact__trust-item" data-aos="fade-up" data-aos-delay="800" style="margin: 0 auto;">
                     <span class="material-icons">support_agent</span>
                     <p>専任担当者が<br>サポート</p>
                 </div>
-                <div class="contact__trust-item" data-aos="fade-up" data-aos-delay="900">
-                    <span class="material-icons">bookmark</span>
-                    <p>プライバシーマーク<br>取得企業</p>
-                </div>
+                <!-- プライバシーマーク取得企業（削除） -->
             </div>
         </div>
     </section>
@@ -2076,15 +2063,33 @@
           e.preventDefault();
           console.log('フォーム送信開始');
           
-          // 送信中の状態を表示
+          // 送信中の状態を表示（シンプルなローディング表示）
           submitButton.disabled = true;
           submitButton.innerHTML = `
-            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-            送信中...
+            <span class="loading-text">送信中</span>
           `;
+          
+          // ローディングアニメーションのスタイルを追加
+          const style = document.createElement('style');
+          style.textContent = `
+            .loading-text {
+              position: relative;
+            }
+            .loading-text:after {
+              content: '...';
+              position: absolute;
+              animation: loading-dots 1.5s infinite;
+              width: 1.5em;
+              text-align: left;
+              margin-left: 0.2em;
+            }
+            @keyframes loading-dots {
+              0%, 20% { content: '.'; }
+              40% { content: '..'; }
+              60%, 100% { content: '...'; }
+            }
+          `;
+          document.head.appendChild(style);
           
           try {
             // フォームデータを収集
@@ -2109,42 +2114,44 @@
             
             console.log('送信完了');
             
-            // 成功メッセージを表示
+            // 成功メッセージを表示（シンプルなデザイン）
             const successMessage = document.createElement('div');
             successMessage.className = 'form__success';
             successMessage.innerHTML = `
-              <div class="text-center py-8">
-                <svg class="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                <h3 class="text-2xl font-bold text-gray-900 mb-2">お問い合わせありがとうございます</h3>
-                <p class="text-lg text-gray-600 mb-6">内容を確認次第、担当者よりご連絡いたします。</p>
-                <button class="btn btn--primary btn--rounded" onclick="location.reload()">
-                  新しい問い合わせを作成
+              <div class="text-center py-8" style="max-width: 600px; margin: 0 auto;">
+                <div class="success-icon" style="width: 80px; height: 80px; margin: 0 auto 2rem; border-radius: 50%; background-color: #10b981; display: flex; align-items: center; justify-content: center;">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <h3 style="font-size: 1.5rem; font-weight: 700; color: #111827; margin-bottom: 1rem;">お問い合わせありがとうございます</h3>
+                <p style="font-size: 1rem; color: #4b5563; margin-bottom: 2rem;">内容を確認次第、担当者よりご連絡いたします。</p>
+                <button class="btn btn--primary btn--rounded" style="background-color: #2563eb; color: white; padding: 0.5rem 2rem; border-radius: 9999px; font-weight: 600;" onclick="location.reload()">
+                  新しいお問い合わせ
                 </button>
               </div>
             `;
+            
+            // 現在のフォーム要素を保存
+            const formParent = form.parentElement;
+            const formIndex = Array.from(formParent.children).indexOf(form);
             
             // フォーム内容をクリアして成功メッセージを表示
             form.innerHTML = '';
             form.appendChild(successMessage);
             
-            // 送信成功後に画面上部にスクロールしないようにする
-            window.scrollTo({
-              top: form.offsetTop - 100,
-              behavior: 'smooth'
-            });
+            // スクロールしない - この行を削除
+            // window.scrollTo({...});
             
           } catch (error) {
             console.error('Error submitting form:', error);
             
-            // エラーメッセージを表示
+            // エラーメッセージを表示（シンプルなデザイン）
             const errorMessage = document.createElement('div');
             errorMessage.className = 'form__error';
             errorMessage.innerHTML = `
-              <div class="p-4 bg-red-50 border border-red-200 rounded-xl text-red-600">
-                <p>送信中にエラーが発生しました。後ほど再度お試しください。</p>
-                <p>エラー詳細: ${error.message}</p>
+              <div style="padding: 1rem; background-color: #fee2e2; border: 1px solid #fecaca; border-radius: 0.5rem; color: #b91c1c; margin: 1rem 0;">
+                <p style="margin: 0;">送信中にエラーが発生しました。後ほど再度お試しください。</p>
               </div>
             `;
             

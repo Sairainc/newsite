@@ -420,10 +420,7 @@
     font-weight: 800;
     margin-bottom: 1.5rem;
     line-height: 1.2;
-    background: linear-gradient(135deg, #1e293b, #2563eb);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: #1e293b;
     position: relative;
     display: inline-block;
     padding-bottom: 0.5rem;
@@ -3072,5 +3069,303 @@
     
     .service__visual-container {
         margin-top: 2rem;
+    }
+}
+
+/* モバイルレスポンシブ改善 */
+@media (max-width: 992px) {
+    .hero .container {
+        flex-direction: column;
+        padding: 0 1.5rem;
+    }
+    
+    .hero__content, .hero__image {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    
+    .hero__image-container {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .price__plans--single {
+        width: 90%;
+    }
+    
+    .social-proof__stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* サービス、強み、事例のセクション改善 */
+    .service__feature-row,
+    .strengths__intro,
+    .case__list {
+        flex-direction: column;
+    }
+    
+    .service__feature,
+    .strengths__intro-image,
+    .strengths__intro-content,
+    .case__item {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 3rem 0;
+        min-height: auto;
+    }
+    
+    .hero__content {
+        margin-bottom: 2.5rem;
+        text-align: center;
+        padding: 0 1rem;
+    }
+    
+    .hero__title {
+        font-size: 2.2rem;
+        word-break: keep-all;
+        line-height: 1.3;
+    }
+    
+    .hero__subtitle {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+    
+    .hero__buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto 2rem;
+    }
+    
+    .hero__buttons .btn {
+        width: 100%;
+    }
+    
+    .hero__success-case {
+        width: 90%;
+        max-width: 300px;
+    }
+    
+    /* コンタクトフォーム改善 */
+    .contact__form {
+        padding: 1.5rem;
+        margin: 0 1rem 4rem;
+    }
+    
+    .form__row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form__radio-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    /* ソーシャルプルーフセクション改善 */
+    .social-proof__stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .testimonial {
+        flex-direction: column;
+        padding: 1.5rem;
+    }
+    
+    .testimonial__image {
+        margin: 0 auto 1.5rem;
+    }
+    
+    .testimonial__content {
+        text-align: center;
+    }
+    
+    /* FAQセクション改善 */
+    .faq__question-title {
+        font-size: 1rem;
+        padding-right: 2.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero {
+        padding: 2rem 0;
+    }
+    
+    .hero__title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero__badge {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero__subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero__trust-badges {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+    }
+    
+    .btn--xlarge {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    /* セクションタイトル改善 */
+    .section__title,
+    .social-proof__title,
+    .strengths__intro-title,
+    .problems__heading,
+    .price__plan-title,
+    .contact__intro-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        word-break: keep-all;
+        line-height: 1.4;
+    }
+    
+    .section__subtitle,
+    .social-proof__subtitle,
+    .strengths__intro-text,
+    .problems__stat-text,
+    .price__intro p,
+    .contact__intro-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    
+    /* グリッドレイアウト改善 */
+    .social-proof__stats,
+    .service__features,
+    .strengths__points,
+    .case__list,
+    .price__plans {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        width: 100%;
+        padding: 0 1rem;
+    }
+    
+    /* カード要素改善 */
+    .social-proof__stat,
+    .service__feature,
+    .strengths__point,
+    .case__item,
+    .price__plan--single {
+        width: 100%;
+    }
+    
+    /* ステップフロー改善 */
+    .contact__steps {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+    
+    .contact__steps::before {
+        display: none;
+    }
+    
+    .contact__step {
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    /* フォームフィールド改善 */
+    .form__input, 
+    .form__select, 
+    .form__textarea {
+        font-size: 16px; /* iOSでズームインしないサイズ */
+        padding: 0.7rem 0.8rem;
+    }
+    
+    /* ボタン改善 */
+    .contact__form .btn,
+    .price__cta .btn,
+    .faq__cta .btn {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+/* さらに小さい画面サイズ向け改善 */
+@media (max-width: 400px) {
+    .hero__title {
+        font-size: 1.5rem;
+    }
+    
+    .hero__success-case {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .hero__success-logo {
+        margin-bottom: 0.5rem;
+    }
+    
+    /* ヘッダー要素改善 */
+    .form__header h4 {
+        font-size: 1.1rem;
+    }
+    
+    .form__header p {
+        font-size: 0.85rem;
+    }
+    
+    /* フォーム要素改善 */
+    .form__label {
+        font-size: 0.9rem;
+    }
+    
+    .form__required {
+        font-size: 0.7rem;
+        padding: 0.1rem 0.3rem;
+    }
+    
+    /* 価格プラン改善 */
+    .price__plan-price span {
+        font-size: 2rem;
+    }
+    
+    .price__plan-features {
+        display: block;
+    }
+    
+    .price__plan-features li {
+        margin-bottom: 0.8rem;
+    }
+    
+    /* 信頼バッジ改善 */
+    .contact__trust-item {
+        width: 100%;
+    }
+    
+    .contact__trust-item .material-icons {
+        font-size: 2rem;
+    }
+    
+    .contact__trust-item p {
+        font-size: 0.8rem;
     }
 }
