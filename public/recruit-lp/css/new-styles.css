@@ -2407,6 +2407,7 @@
     margin-bottom: 1.5rem;
     color: #1e293b;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    white-space: nowrap;
 }
 
 .hero__title .accent-text {
@@ -2688,6 +2689,7 @@
     
     .hero__title {
         font-size: 2.8rem;
+        white-space: normal;
     }
 
     .hero__image-container::before,
@@ -3171,7 +3173,7 @@
     
     /* ソーシャルプルーフセクション改善 */
     .social-proof__stats {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
     
@@ -3198,6 +3200,20 @@
 @media (max-width: 576px) {
     .hero {
         padding: 2rem 0;
+    }
+    
+    .hero .container {
+        flex-direction: column;
+    }
+    
+    .hero__content {
+        order: 1;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero__image {
+        order: 2;
+        margin-bottom: 2rem;
     }
     
     .hero__title {
@@ -3229,6 +3245,20 @@
         font-size: 1rem;
     }
     
+    .hero__success-case {
+        position: static;
+        margin-top: 1.5rem;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    /* 「詳しく見る」ボタンが被らないように修正 */
+    .hero__success-link {
+        margin-top: 0.5rem;
+        display: inline-block;
+        clear: both;
+    }
+    
     /* セクションタイトル改善 */
     .section__title,
     .social-proof__title,
@@ -3253,14 +3283,10 @@
     }
     
     /* グリッドレイアウト改善 */
-    .social-proof__stats,
-    .service__features,
-    .strengths__points,
-    .case__list,
-    .price__plans {
+    .social-proof__stats {
         display: grid;
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
         width: 100%;
         padding: 0 1rem;
     }
@@ -3315,13 +3341,10 @@
     
     .hero__success-case {
         padding: 1rem;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
     }
     
     .hero__success-logo {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0;
     }
     
     /* ヘッダー要素改善 */
@@ -3367,5 +3390,92 @@
     
     .contact__trust-item p {
         font-size: 0.8rem;
+    }
+}
+
+/* サービスビジュアル要素 - 専門サービスのビジュアルを横並びに修正 */
+.service__visual-container {
+    flex: 0 0 45%;
+    display: flex;
+    flex-direction: column;
+}
+
+.service__visual-box {
+    display: flex;
+    flex-direction: column;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.service__visual-element {
+    transition: all 0.3s ease;
+}
+
+.service__visual-element:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px -5px rgba(37, 99, 235, 0.2);
+}
+
+.service__visual-stats > div {
+    transition: all 0.3s ease;
+}
+
+.service__visual-stats > div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px -5px rgba(37, 99, 235, 0.2);
+}
+
+@media (max-width: 768px) {
+    .service__intro {
+        flex-direction: column;
+    }
+    
+    .service__intro-content, 
+    .service__visual-container {
+        flex: 1 0 100%;
+    }
+    
+    .service__visual-container {
+        margin-top: 2rem;
+    }
+    
+    /* 専門サービスのビジュアルを横並びに修正 */
+    .service__visual-box {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .service__visual-element {
+        flex: 0 0 calc(50% - 0.5rem);
+    }
+}
+
+@media (max-width: 576px) {
+    /* 専門サービスのビジュアルのスマホ表示をさらに調整 */
+    .service__visual-box {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .service__visual-element {
+        flex: 0 0 48%;
+        margin-bottom: 1rem;
+    }
+    
+    .social-proof__stats {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
