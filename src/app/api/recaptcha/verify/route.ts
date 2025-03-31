@@ -3,71 +3,49 @@ import { NextResponse } from 'next/server';
 // reCAPTCHA検証APIエンドポイント
 export async function POST(request: Request) {
   try {
-    // リクエストボディからトークンを取得
     const { token } = await request.json();
 
     if (!token) {
       return NextResponse.json(
-        { success: false, error: 'invalid-input-response' },
+        { success: false, error: 'reCAPTCHAトークンが提供されていません' },
         { status: 400 }
       );
     }
 
-    // 環境変数からreCAPTCHAシークレットキーを取得
-    const secretKey = process.env.RECAPTCHA_SECRET_KEY;
-    
-    if (!secretKey) {
-      console.error('reCAPTCHA secret key is missing!');
-      return NextResponse.json(
-        { success: false, error: 'recaptcha-configuration-error' },
-        { status: 500 }
-      );
-    }
-
-    // Google reCAPTCHA APIに検証リクエストを送信
-    const verificationURL = 'https://www.google.com/recaptcha/api/siteverify';
+    // reCAPTCHAの検証
+    const verificationUrl = 'https://www.google.com/recaptcha/api/siteverify';
     const formData = new URLSearchParams();
-    formData.append('secret', secretKey);
+    formData.append('secret', process.env.RECAPTCHA_SECRET_KEY || '');
     formData.append('response', token);
 
-    const verificationResponse = await fetch(verificationURL, {
+    const verificationResponse = await fetch(verificationUrl, {
       method: 'POST',
       body: formData,
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
     });
 
     const verificationResult = await verificationResponse.json();
-    
-    console.log('reCAPTCHA verification result:', verificationResult);
 
     if (!verificationResult.success) {
       return NextResponse.json(
         { 
           success: false, 
-          error: verificationResult['error-codes']?.[0] || 'recaptcha-verification-failed' 
+          error: verificationResult['error-codes']?.[0] || 'reCAPTCHAの検証に失敗しました' 
         },
         { status: 400 }
       );
     }
 
-    // スコアに基づいた処理（オプション）
-    const score = verificationResult.score;
-    const isHuman = score >= 0.5; // 0.5以上を人間と判断（調整可能）
-
     return NextResponse.json({
       success: true,
-      score,
-      isHuman,
-      hostname: verificationResult.hostname,
-      challenge_ts: verificationResult.challenge_ts
+      score: verificationResult.score,
     });
-
   } catch (error) {
-    console.error('Error verifying reCAPTCHA:', error);
+    console.error('reCAPTCHA verification error:', error);
     return NextResponse.json(
-      { success: false, error: 'server-error' },
+      { success: false, error: 'サーバーエラーが発生しました' },
       { status: 500 }
     );
   }

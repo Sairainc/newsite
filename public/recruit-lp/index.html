@@ -2052,5 +2052,82 @@
             });
         });
     </script>
+    
+    <script>
+      // フォーム送信処理
+      document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('.contact__form form');
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.innerHTML;
+        
+        form.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          
+          // 送信中の状態を表示
+          submitButton.disabled = true;
+          submitButton.innerHTML = `
+            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            送信中...
+          `;
+          
+          try {
+            
+            // フォームデータを収集
+            const formData = new FormData(form);
+            formData.append('recaptchaToken', recaptchaToken);
+            
+            // GASのWebアプリURL
+            const gasUrl = 'https://script.google.com/macros/s/AKfycbzTqo9O_gYfbnj0WjiTbAEvLXAzs9SaEBkX2BDH2kk2a2VSngqLNUFEDt_3nI5OC9RSXg/exec';
+            
+            // フォームデータを送信
+            const response = await fetch(gasUrl, {
+              method: 'POST',
+              body: formData,
+              mode: 'no-cors'
+            });
+            
+            // 成功メッセージを表示
+            const successMessage = document.createElement('div');
+            successMessage.className = 'form__success';
+            successMessage.innerHTML = `
+              <div class="text-center py-8">
+                <svg class="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">お問い合わせありがとうございます</h3>
+                <p class="text-lg text-gray-600 mb-6">内容を確認次第、担当者よりご連絡いたします。</p>
+                <button class="btn btn--primary btn--rounded" onclick="location.reload()">
+                  新しい問い合わせを作成
+                </button>
+              </div>
+            `;
+            
+            form.innerHTML = '';
+            form.appendChild(successMessage);
+            
+          } catch (error) {
+            console.error('Error submitting form:', error);
+            
+            // エラーメッセージを表示
+            const errorMessage = document.createElement('div');
+            errorMessage.className = 'form__error';
+            errorMessage.innerHTML = `
+              <div class="p-4 bg-red-50 border border-red-200 rounded-xl text-red-600">
+                <p>送信中にエラーが発生しました。後ほど再度お試しください。</p>
+              </div>
+            `;
+            
+            form.insertBefore(errorMessage, submitButton);
+            
+            // ボタンを元の状態に戻す
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalButtonText;
+          }
+        });
+      });
+    </script>
 </body>
 </html>
