@@ -1697,7 +1697,7 @@
                 </p>
             </div>
             
-            <form class="contact__form" data-aos="fade-up" data-aos-delay="500">
+            <form class="contact__form" data-aos="fade-up" data-aos-delay="500" method="POST" action="https://script.google.com/macros/s/AKfycbzTqo9O_gYfbnj0WjiTbAEvLXAzs9SaEBkX2BDH2kk2a2VSngqLNUFEDt_3nI5OC9RSXg/exec">
                 <div class="form__header">
                     <span class="material-icons">security</span>
                     <h4>安全なフォーム送信</h4>
@@ -2056,12 +2056,25 @@
     <script>
       // フォーム送信処理
       document.addEventListener('DOMContentLoaded', function() {
-        const form = document.querySelector('.contact__form form');
+        const form = document.querySelector('.contact__form');
+        
+        if (!form) {
+          console.error('フォームが見つかりません');
+          return;
+        }
+        
         const submitButton = form.querySelector('button[type="submit"]');
+        
+        if (!submitButton) {
+          console.error('送信ボタンが見つかりません');
+          return;
+        }
+        
         const originalButtonText = submitButton.innerHTML;
         
         form.addEventListener('submit', async function(e) {
           e.preventDefault();
+          console.log('フォーム送信開始');
           
           // 送信中の状態を表示
           submitButton.disabled = true;
@@ -2074,13 +2087,18 @@
           `;
           
           try {
-            
             // フォームデータを収集
             const formData = new FormData(form);
-            formData.append('recaptchaToken', recaptchaToken);
+            
+            // formDataの内容をコンソールに出力（デバッグ用）
+            for (let pair of formData.entries()) {
+              console.log(pair[0] + ': ' + pair[1]);
+            }
             
             // GASのWebアプリURL
             const gasUrl = 'https://script.google.com/macros/s/AKfycbzTqo9O_gYfbnj0WjiTbAEvLXAzs9SaEBkX2BDH2kk2a2VSngqLNUFEDt_3nI5OC9RSXg/exec';
+            
+            console.log('送信先URL:', gasUrl);
             
             // フォームデータを送信
             const response = await fetch(gasUrl, {
@@ -2088,6 +2106,8 @@
               body: formData,
               mode: 'no-cors'
             });
+            
+            console.log('送信完了');
             
             // 成功メッセージを表示
             const successMessage = document.createElement('div');
@@ -2105,8 +2125,15 @@
               </div>
             `;
             
+            // フォーム内容をクリアして成功メッセージを表示
             form.innerHTML = '';
             form.appendChild(successMessage);
+            
+            // 送信成功後に画面上部にスクロールしないようにする
+            window.scrollTo({
+              top: form.offsetTop - 100,
+              behavior: 'smooth'
+            });
             
           } catch (error) {
             console.error('Error submitting form:', error);
@@ -2117,10 +2144,13 @@
             errorMessage.innerHTML = `
               <div class="p-4 bg-red-50 border border-red-200 rounded-xl text-red-600">
                 <p>送信中にエラーが発生しました。後ほど再度お試しください。</p>
+                <p>エラー詳細: ${error.message}</p>
               </div>
             `;
             
-            form.insertBefore(errorMessage, submitButton);
+            // エラーメッセージの挿入位置を確保
+            const errorContainer = form.querySelector('.form__submit') || submitButton.parentNode;
+            errorContainer.insertBefore(errorMessage, submitButton);
             
             // ボタンを元の状態に戻す
             submitButton.disabled = false;
